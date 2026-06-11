@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { LanguageToggle } from './LanguageToggle';
 import { Button } from './Button';
@@ -6,7 +6,7 @@ import { createClient } from '@/lib/supabase/server';
 import { UserMenu } from './UserMenu';
 
 export async function Header() {
-  const t = useTranslations('nav');
+  const t = await getTranslations('nav');
 
   let user = null;
   let isPremium = false;
