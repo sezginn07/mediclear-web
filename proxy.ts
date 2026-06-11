@@ -70,5 +70,8 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: '/((?!api|trpc|_next|_vercel|.*\\..*).*)',
+  // auth/callback is excluded: next-intl would otherwise redirect the
+  // unprefixed /auth/callback?code=... to /tr/auth/callback before the route
+  // handler can exchange the OAuth code for a session.
+  matcher: '/((?!api|trpc|_next|_vercel|auth/callback|.*\\..*).*)',
 };

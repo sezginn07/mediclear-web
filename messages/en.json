@@ -34,27 +34,6 @@
     "socialProof": "{count} reports analyzed this week",
     "freeNote": "Your free plan includes 2 analyses"
   },
-  "testimonials": {
-    "title": "What our users say",
-    "subtitle": "Thousands of people understand their reports with MediClear.",
-    "items": [
-      {
-        "quote": "I used it to understand my mother's blood test. I went to the appointment knowing which values mattered and what to ask the doctor.",
-        "name": "Zeynep K.",
-        "role": "Nurse, 34"
-      },
-      {
-        "quote": "It helped me understand my MRI report before seeing the doctor. Learning that most of the terms I feared were normal findings was a relief.",
-        "name": "Mert A.",
-        "role": "Engineer, 28"
-      },
-      {
-        "quote": "Now I can ask my doctor the right questions. Appointments are short, so going in prepared changes everything.",
-        "name": "Hasan D.",
-        "role": "Retired, 62"
-      }
-    ]
-  },
   "features": {
     "title": "Why MediClear?",
     "subtitle": "Understanding your health data has never been this easy.",
@@ -234,8 +213,6 @@
       "title": "Invest in your health",
       "description": "Premium gives you 10 analyses a month, access to your analysis history, and priority processing.",
       "perDay": "Less than 17 cents a day — $4.99/month",
-      "testimonial": "\"Thanks to Premium I track my mother's chronic condition regularly. After every test I can see what changed.\"",
-      "testimonialAuthor": "Elif T. — Premium member",
       "locked": ["Analysis history", "10 analyses per month", "Priority processing"],
       "cta": "Explore Premium"
     }
@@ -334,6 +311,7 @@
   },
   "auth": {
     "login": {
+      "oauthFailed": "Google sign-in could not be completed. Please try again.",
       "title": "Sign In",
       "subtitle": "Sign in to your MediClear account",
       "email": "Email",

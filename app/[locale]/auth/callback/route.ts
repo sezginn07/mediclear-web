@@ -32,5 +32,5 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     }
   }
 
-  return NextResponse.redirect(`${origin}/${locale}/auth/login?error=auth_callback_failed`);
+  return NextResponse.redirect(`${origin}/${locale}/auth/login?error=oauth_failed`);
 }

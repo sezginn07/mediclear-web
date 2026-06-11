@@ -128,15 +128,6 @@ export function AnalyzeClient({ upgraded }: { upgraded: boolean }) {
           <Button className="mt-5" size="lg" onClick={() => router.push('/pricing')}>
             {t('limitGate.cta')}
           </Button>
-
-          <figure className="mx-auto mt-6 max-w-md border-t border-border pt-5">
-            <blockquote className="text-sm italic leading-relaxed text-muted">
-              {t('limitGate.testimonial')}
-            </blockquote>
-            <figcaption className="mt-2 text-xs font-medium text-muted-soft">
-              {t('limitGate.testimonialAuthor')}
-            </figcaption>
-          </figure>
         </Card>
       ) : (
         <>

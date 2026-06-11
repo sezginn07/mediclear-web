@@ -52,5 +52,5 @@ export async function GET(request: NextRequest) {
     }
   }
 
-  return NextResponse.redirect(`${baseUrl}/${locale}/auth/login?error=auth_callback_failed`);
+  return NextResponse.redirect(`${baseUrl}/${locale}/auth/login?error=oauth_failed`);
 }

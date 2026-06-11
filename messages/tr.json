@@ -34,27 +34,6 @@
     "socialProof": "Bu hafta {count} rapor analiz edildi",
     "freeNote": "Ücretsiz planınızda 2 analiz hakkınız bulunuyor"
   },
-  "testimonials": {
-    "title": "Kullanıcılarımız ne diyor?",
-    "subtitle": "Binlerce kişi raporlarını MediClear ile anlıyor.",
-    "items": [
-      {
-        "quote": "Annemin kan tahlilini anlamak için kullandım. Hangi değerlerin önemli olduğunu ve doktora ne soracağımı bilerek randevuya gittim.",
-        "name": "Zeynep K.",
-        "role": "Hemşire, 34"
-      },
-      {
-        "quote": "Doktora gitmeden önce MRI raporumu anlamama yardımcı oldu. Korktuğum terimlerin çoğunun normal bulgular olduğunu öğrenmek beni rahatlattı.",
-        "name": "Mert A.",
-        "role": "Mühendis, 28"
-      },
-      {
-        "quote": "Artık doktoruma doğru soruları sorabiliyorum. Muayene süresi kısa olduğu için hazırlıklı gitmek çok şey değiştiriyor.",
-        "name": "Hasan D.",
-        "role": "Emekli, 62"
-      }
-    ]
-  },
   "features": {
     "title": "Neden MediClear?",
     "subtitle": "Sağlık verilerinizi anlamak hiç bu kadar kolay olmamıştı.",
@@ -234,8 +213,6 @@
       "title": "Sağlığınıza yatırım yapın",
       "description": "Premium ile ayda 10 analiz, analiz geçmişinize erişim ve öncelikli işleme kazanırsınız.",
       "perDay": "Günde 17 kuruştan az — ayda $4.99",
-      "testimonial": "\"Premium sayesinde annemin kronik hastalığını düzenli takip ediyorum. Her tahlilden sonra ne değiştiğini görüyorum.\"",
-      "testimonialAuthor": "Elif T. — Premium üyesi",
       "locked": ["Analiz geçmişi", "Ayda 10 analiz", "Öncelikli işleme"],
       "cta": "Premium'u Keşfet"
     }
@@ -334,6 +311,7 @@
   },
   "auth": {
     "login": {
+      "oauthFailed": "Google ile giriş tamamlanamadı. Lütfen tekrar deneyin.",
       "title": "Giriş Yap",
       "subtitle": "MediClear hesabınıza giriş yapın",
       "email": "E-posta",
