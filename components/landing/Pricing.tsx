@@ -6,6 +6,7 @@ import { useRouter } from '@/i18n/navigation';
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
+import { CheckIcon, SparklesIcon } from '@/components/ui/icons';
 
 export function Pricing() {
   const t = useTranslations('pricing');
@@ -90,7 +91,7 @@ export function Pricing() {
               <ul className="mt-6 flex-1 space-y-3 text-sm">
                 {freeFeatures.map((f) => (
                   <li key={f} className="flex items-start gap-2 text-foreground">
-                    <span className="text-status-normal">✓</span>
+                    <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-status-normal" />
                     {f}
                   </li>
                 ))}
@@ -107,8 +108,12 @@ export function Pricing() {
 
           {/* Premium */}
           <motion.div whileHover={{ scale: 1.02 }} transition={{ type: 'spring', stiffness: 300, damping: 20 }}>
-            <Card className="relative flex h-full flex-col border-primary p-8 shadow-md ring-1 ring-primary" style={{ boxShadow: '0 0 24px 0 rgba(37,99,235,0.10)' }}>
-              <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
+            <Card
+              className="relative flex h-full flex-col border-primary p-8 ring-1 ring-primary"
+              style={{ boxShadow: '0 0 0 1px rgba(26,111,212,0.15), 0 8px 32px -4px rgba(26,111,212,0.25)' }}
+            >
+              <span className="absolute -top-3 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground shadow-md shadow-blue-600/30">
+                <SparklesIcon className="h-3 w-3" />
                 {t('premium.badge')}
               </span>
               <h3 className="text-lg font-semibold text-foreground">
@@ -124,7 +129,7 @@ export function Pricing() {
               <ul className="mt-6 flex-1 space-y-3 text-sm">
                 {premiumFeatures.map((f) => (
                   <li key={f} className="flex items-start gap-2 text-foreground">
-                    <span className="text-status-normal">✓</span>
+                    <CheckIcon className="mt-0.5 h-4 w-4 shrink-0 text-status-normal" />
                     {f}
                   </li>
                 ))}

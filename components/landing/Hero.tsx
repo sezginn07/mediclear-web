@@ -5,6 +5,17 @@ import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/Button';
+import {
+  ArrowRightIcon,
+  CheckIcon,
+  EyeOffIcon,
+  LockIcon,
+  ShieldCheckIcon,
+  SparklesIcon,
+} from '@/components/ui/icons';
+
+// Trust chips are positional: encryption / no-storage / compliance.
+const CHIP_ICONS = [LockIcon, EyeOffIcon, ShieldCheckIcon];
 
 export function Hero() {
   const t = useTranslations('hero');
@@ -28,13 +39,30 @@ export function Hero() {
       className="relative overflow-hidden"
       style={{ background: 'linear-gradient(180deg, #E8F2FC 0%, #f8fafd 100%)' }}
     >
-      <div className="mx-auto max-w-6xl px-4 py-20 text-center sm:px-6 sm:py-28">
+      {/* Animated gradient backdrop — soft drifting blobs behind the content */}
+      <div aria-hidden="true" className="absolute inset-0">
+        <div
+          className="hero-blob hero-blob-a -top-24 left-[8%] h-96 w-96 opacity-50"
+          style={{ background: 'radial-gradient(circle, rgba(26,111,212,0.18) 0%, transparent 70%)' }}
+        />
+        <div
+          className="hero-blob hero-blob-b -bottom-32 right-[5%] h-[28rem] w-[28rem] opacity-60"
+          style={{ background: 'radial-gradient(circle, rgba(34,197,194,0.14) 0%, transparent 70%)' }}
+        />
+        <div
+          className="hero-blob hero-blob-a top-1/3 right-[30%] h-72 w-72 opacity-40"
+          style={{ background: 'radial-gradient(circle, rgba(26,111,212,0.12) 0%, transparent 70%)', animationDelay: '-9s' }}
+        />
+      </div>
+
+      <div className="relative mx-auto max-w-6xl px-4 py-20 text-center sm:px-6 sm:py-28">
         <motion.span
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-block rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-sm font-medium text-primary"
+          className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/80 px-4 py-1.5 text-sm font-medium text-primary shadow-sm backdrop-blur-sm"
         >
+          <SparklesIcon className="h-4 w-4" />
           {t('badge')}
         </motion.span>
         <motion.h1
@@ -49,7 +77,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.2 }}
-          className="mx-auto mt-6 max-w-2xl text-lg text-muted"
+          className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted"
         >
           {t('subtitle')}
         </motion.p>
@@ -60,16 +88,15 @@ export function Hero() {
           className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <Link href="/analyze">
-            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-              <Button size="lg">{t('cta')}</Button>
-            </motion.div>
+            <Button size="lg" className="group shadow-lg shadow-blue-600/20">
+              {t('cta')}
+              <ArrowRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+            </Button>
           </Link>
           <a href="#how-it-works">
-            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-              <Button size="lg" variant="secondary">
-                {t('ctaSecondary')}
-              </Button>
-            </motion.div>
+            <Button size="lg" variant="secondary" className="bg-white/80 backdrop-blur-sm">
+              {t('ctaSecondary')}
+            </Button>
           </a>
         </motion.div>
         <motion.p
@@ -89,15 +116,18 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="mt-6 flex flex-wrap items-center justify-center gap-3"
         >
-          {(t.raw('trustChips') as string[]).map((chip) => (
-            <li
-              key={chip}
-              className="flex items-center gap-1.5 rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-muted"
-            >
-              <span aria-hidden="true" className="text-status-normal">🔒</span>
-              {chip}
-            </li>
-          ))}
+          {(t.raw('trustChips') as string[]).map((chip, i) => {
+            const Icon = CHIP_ICONS[i % CHIP_ICONS.length];
+            return (
+              <li
+                key={chip}
+                className="flex items-center gap-1.5 rounded-full border border-border bg-white/90 px-3 py-1.5 text-xs font-medium text-muted shadow-sm backdrop-blur-sm"
+              >
+                <Icon className="h-3.5 w-3.5 text-status-normal" />
+                {chip}
+              </li>
+            );
+          })}
         </motion.ul>
 
         {/* Trust badges: social proof counter + free-plan note */}
@@ -108,11 +138,11 @@ export function Hero() {
           className="mt-10 flex flex-col items-center justify-center gap-2 text-sm text-muted sm:flex-row sm:gap-6"
         >
           <span className="flex items-center gap-2">
-            <span aria-hidden="true" className="text-status-normal text-base">✓</span>
+            <CheckIcon className="h-4 w-4 text-status-normal" />
             <SocialProofCounter target={weeklyCount} template={t('socialProof', { count: '{n}' })} />
           </span>
           <span className="flex items-center gap-2">
-            <span aria-hidden="true" className="text-status-normal text-base">✓</span>
+            <CheckIcon className="h-4 w-4 text-status-normal" />
             {t('freeNote')}
           </span>
         </motion.div>

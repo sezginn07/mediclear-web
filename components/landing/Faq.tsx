@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/cn';
+import { useInView } from '@/lib/useInView';
+import { ChevronDownIcon } from '@/components/ui/icons';
 
 interface FaqItem {
   question: string;
@@ -13,6 +15,7 @@ export function Faq() {
   const t = useTranslations('faq');
   const items = t.raw('items') as FaqItem[];
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const ref = useInView<HTMLDivElement>();
 
   return (
     <section id="faq" className="border-t border-border">
@@ -21,47 +24,57 @@ export function Faq() {
           {t('title')}
         </h2>
 
-        <div className="mt-10 divide-y divide-border rounded-2xl border border-border bg-white">
+        <div
+          ref={ref}
+          className="anim-fade-up mt-10 divide-y divide-border overflow-hidden rounded-2xl border border-border bg-white shadow-sm"
+        >
           {items.map((item, i) => {
             const isOpen = openIndex === i;
             return (
-              <div key={i}>
+              <div
+                key={i}
+                className={cn(
+                  'transition-colors duration-200',
+                  isOpen ? 'bg-blue-50/40' : 'hover:bg-slate-50',
+                )}
+              >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : i)}
-                  className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                  className="flex w-full cursor-pointer items-center justify-between gap-4 px-6 py-5 text-left"
                   aria-expanded={isOpen}
                 >
-                  <span className="font-medium text-foreground">
+                  <span
+                    className={cn(
+                      'font-medium transition-colors duration-200',
+                      isOpen ? 'text-primary' : 'text-foreground',
+                    )}
+                  >
                     {item.question}
                   </span>
-                  {/* Chevron rotates 180deg when open */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                  <span
+                    aria-hidden="true"
                     className={cn(
-                      'h-4 w-4 shrink-0 text-muted transition-transform duration-300',
-                      isOpen && 'rotate-180',
+                      'flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-all duration-300',
+                      isOpen
+                        ? 'rotate-180 bg-primary text-primary-foreground'
+                        : 'bg-slate-100 text-muted',
                     )}
-                    aria-hidden
                   >
-                    <polyline points="6 9 12 15 18 9" />
-                  </svg>
+                    <ChevronDownIcon className="h-4 w-4" />
+                  </span>
                 </button>
+                {/* grid-rows trick animates to content height without magic max-height */}
                 <div
-                  style={{
-                    maxHeight: isOpen ? '500px' : '0px',
-                    opacity: isOpen ? 1 : 0,
-                  }}
-                  className="overflow-hidden transition-all duration-300 ease-in-out"
+                  className={cn(
+                    'grid transition-all duration-300 ease-in-out',
+                    isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',
+                  )}
                 >
-                  <p className="px-6 pb-5 text-sm leading-relaxed text-muted">
-                    {item.answer}
-                  </p>
+                  <div className="overflow-hidden">
+                    <p className="px-6 pb-5 text-sm leading-relaxed text-muted">
+                      {item.answer}
+                    </p>
+                  </div>
                 </div>
               </div>
             );

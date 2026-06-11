@@ -3,20 +3,25 @@
 import { useTranslations } from 'next-intl';
 import { useInView } from '@/lib/useInView';
 import { Card } from '@/components/ui/Card';
+import {
+  MessageHeartIcon,
+  ShieldCheckIcon,
+  ZapIcon,
+} from '@/components/ui/icons';
 
 const ITEMS = [
-  { key: 'instant', icon: '⚡' },
-  { key: 'plainLanguage', icon: '💬' },
-  { key: 'private', icon: '🔒' },
+  { key: 'instant', Icon: ZapIcon },
+  { key: 'plainLanguage', Icon: MessageHeartIcon },
+  { key: 'private', Icon: ShieldCheckIcon },
 ] as const;
 
 function FeatureCard({
-  icon,
+  Icon,
   title,
   description,
   delay,
 }: {
-  icon: string;
+  Icon: typeof ZapIcon;
   title: string;
   description: string;
   delay: number;
@@ -26,21 +31,19 @@ function FeatureCard({
   return (
     <div
       ref={ref}
-      className="anim-fade-up"
+      className="anim-fade-up group h-full"
       style={{ transitionDelay: `${delay}ms` }}
     >
-      <Card
-        className="h-full p-8 transition-shadow duration-200 hover:shadow-md"
-        style={{ borderTopWidth: '3px', borderTopColor: 'transparent' }}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLDivElement).style.borderTopColor = 'var(--primary)';
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLDivElement).style.borderTopColor = 'transparent';
-        }}
-      >
-        <div className="text-3xl">{icon}</div>
-        <h3 className="mt-4 text-lg font-semibold text-foreground">{title}</h3>
+      <Card className="relative h-full overflow-hidden p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-600/5">
+        {/* Top accent line slides in on hover */}
+        <span
+          aria-hidden="true"
+          className="absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 bg-primary transition-transform duration-300 group-hover:scale-x-100"
+        />
+        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-light text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+          <Icon className="h-6 w-6" />
+        </div>
+        <h3 className="mt-5 text-lg font-semibold text-foreground">{title}</h3>
         <p className="mt-2 text-sm leading-relaxed text-muted">{description}</p>
       </Card>
     </div>
@@ -61,10 +64,10 @@ export function Features() {
         </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {ITEMS.map(({ key, icon }, i) => (
+          {ITEMS.map(({ key, Icon }, i) => (
             <FeatureCard
               key={key}
-              icon={icon}
+              Icon={Icon}
               title={t(`items.${key}.title`)}
               description={t(`items.${key}.description`)}
               delay={i * 100}

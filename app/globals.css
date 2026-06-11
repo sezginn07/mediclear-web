@@ -107,6 +107,28 @@ body {
    IntersectionObserver issues on non-localhost origins.
 ──────────────────────────────────────────────────────────────────────── */
 
+/* ── Hero: slow-drifting gradient blobs (transform/opacity only — GPU-cheap,
+   neutralized automatically by the prefers-reduced-motion block above). ── */
+@keyframes blob-drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.08); }
+  66% { transform: translate(-25px, 25px) scale(0.95); }
+}
+@keyframes blob-drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40% { transform: translate(-35px, 20px) scale(1.05); }
+  70% { transform: translate(25px, -25px) scale(0.97); }
+}
+.hero-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(72px);
+  pointer-events: none;
+  will-change: transform;
+}
+.hero-blob-a { animation: blob-drift-a 18s ease-in-out infinite; }
+.hero-blob-b { animation: blob-drift-b 22s ease-in-out infinite; }
+
 /* fade-up: used by Features cards */
 .anim-fade-up {
   opacity: 0;
