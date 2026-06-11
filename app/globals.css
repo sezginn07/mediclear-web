@@ -4,26 +4,32 @@
 :root {
   --background: #f8fafd;
   --foreground: #0f172a;
-  --muted: #64748b;
+  --muted: #475569; /* text-secondary — 4.5:1+ on white for WCAG AA */
+  --muted-soft: #94a3b8; /* text-tertiary — large/decorative text only */
   --card: #ffffff;
+  --surface: #ffffff;
   --border: #e2e8f0;
 
-  --primary: #2563eb;
+  --primary: #1a6fd4;
+  --primary-light: #ebf3fd;
   --primary-foreground: #ffffff;
 
   /* Status colors — language-neutral, used across analyze + results. */
-  --status-normal: #22c55e;
-  --status-warning: #f59e0b;
-  --status-urgent: #ef4444;
+  --status-normal: #16a34a;
+  --status-warning: #d97706;
+  --status-urgent: #dc2626;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-muted-soft: var(--muted-soft);
   --color-card: var(--card);
+  --color-surface: var(--surface);
   --color-border: var(--border);
   --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
   --color-primary-foreground: var(--primary-foreground);
   --color-status-normal: var(--status-normal);
   --color-status-warning: var(--status-warning);
@@ -45,6 +51,43 @@ body {
 @media print {
   .no-print {
     display: none !important;
+  }
+}
+
+/* Visible focus indicator on all interactive elements (WCAG 2.4.7). */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Skip-to-content link: hidden until keyboard-focused. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 0.75rem 0;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* Respect reduced-motion preferences. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
   }
 }
 

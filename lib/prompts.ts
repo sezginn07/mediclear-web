@@ -722,6 +722,29 @@ ABSOLUTE RULES: Write in English. Return only JSON. Never diagnose independently
   },
 };
 
+// ─── Shared risk-communication suffix ────────────────────────────────────────
+// Appended to every category prompt (web only; the prompt bodies above stay
+// verbatim-identical to the mobile app). Health-literacy rules: always convert
+// relative risk to absolute risk with a baseline, and keep language calm.
+const RISK_COMMUNICATION_SUFFIX: Record<Lang, string> = {
+  tr: `
+
+RİSK İLETİŞİMİ KURALLARI (her yanıtta zorunlu):
+- Göreceli riski HER ZAMAN mutlak riske çevir ve taban değer ver. Örnek format: "Bu değer normal aralığın %15 üzerinde — yani 100 kişiden yaklaşık 12'sinde görülen bir durum."
+- Riski asla taban değeri olmadan yüzde artışı olarak sunma ("riski %50 artırır" gibi ifadeler yasak — bunun yerine "100 kişiden 2 yerine 3" gibi somut sayılar kullan).
+- "Tehlikeli", "kritik", "acil" gibi kelimeleri yalnızca hemen ardından somut bir sonraki adım vererek kullan.
+- Endişe verici her bulgudan hemen sonra yapılabilecek somut bir adım belirt.
+- Sakin, güven veren bir dil kullan; korkutma, abartma.`,
+  en: `
+
+RISK COMMUNICATION RULES (mandatory in every response):
+- ALWAYS convert relative risk to absolute risk with a baseline. Example format: "This value is 15% above the normal range — a situation seen in roughly 12 out of 100 people."
+- Never present risk as a percentage increase without a baseline (phrases like "increases risk by 50%" are forbidden — use concrete counts like "3 in 100 instead of 2 in 100").
+- Only use words like "dangerous", "critical", or "urgent" when immediately followed by a concrete next step.
+- After every concerning finding, state an actionable next step.
+- Use calm, reassuring language; never alarm or dramatize.`,
+};
+
 export function buildSystemPrompt(lang: Lang, category: CategoryId): string {
-  return PROMPTS[category][lang];
+  return PROMPTS[category][lang] + RISK_COMMUNICATION_SUFFIX[lang];
 }

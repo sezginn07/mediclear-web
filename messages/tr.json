@@ -8,7 +8,8 @@
     "back": "Geri",
     "tryAgain": "Tekrar Dene",
     "free": "Ücretsiz",
-    "premium": "Premium"
+    "premium": "Premium",
+    "skipToContent": "İçeriğe atla"
   },
   "nav": {
     "features": "Özellikler",
@@ -28,7 +29,30 @@
     "cta": "Ücretsiz Analiz Et",
     "ctaSecondary": "Nasıl çalışır?",
     "disclaimer": "Tıbbi tavsiye değildir. Sonuçlarınızı her zaman bir hekimle değerlendirin.",
-    "trustSuffix": "analizler yapıldı"
+    "trustSuffix": "analizler yapıldı",
+    "socialProof": "Bu ay {count} rapor analiz edildi",
+    "freeNote": "Ücretsiz planınızda 2 analiz hakkınız bulunuyor"
+  },
+  "testimonials": {
+    "title": "Kullanıcılarımız ne diyor?",
+    "subtitle": "Binlerce kişi raporlarını MediClear ile anlıyor.",
+    "items": [
+      {
+        "quote": "Annemin kan tahlilini anlamak için kullandım. Hangi değerlerin önemli olduğunu ve doktora ne soracağımı bilerek randevuya gittim.",
+        "name": "Zeynep K.",
+        "role": "Hemşire, 34"
+      },
+      {
+        "quote": "Doktora gitmeden önce MRI raporumu anlamama yardımcı oldu. Korktuğum terimlerin çoğunun normal bulgular olduğunu öğrenmek beni rahatlattı.",
+        "name": "Mert A.",
+        "role": "Mühendis, 28"
+      },
+      {
+        "quote": "Artık doktoruma doğru soruları sorabiliyorum. Muayene süresi kısa olduğu için hazırlıklı gitmek çok şey değiştiriyor.",
+        "name": "Hasan D.",
+        "role": "Emekli, 62"
+      }
+    ]
   },
   "features": {
     "title": "Neden MediClear?",
@@ -69,6 +93,7 @@
     "title": "Size uygun planı seçin",
     "subtitle": "Önce ücretsiz deneyin. İstediğiniz zaman yükseltin.",
     "perMonth": "/ ay",
+    "anchor": "Tek bir doktor randevusundan daha ucuz — ayda sadece $4.99",
     "free": {
       "name": "Ücretsiz",
       "price": "₺0",
@@ -173,7 +198,14 @@
       "general": "Genel"
     },
     "submit": "Analiz Et",
+    "trust": {
+      "title": "Bu analiz nasıl çalışır?",
+      "how": "Raporunuz, tıbbi belgeleri sade dile çevirmek üzere yönlendirilmiş yapay zeka tarafından incelenir. Önemli bulgular, doktorunuza sorabileceğiniz sorular ve pratik öneriler çıkarılır.",
+      "model": "Claude AI tarafından analiz edilir — Anthropic'in güvenli yapay zeka modeli.",
+      "privacy": "Raporunuz şifreli bağlantıyla (HTTPS) iletilir ve analiz için işlendikten sonra sunucularımızda saklanmaz."
+    },
     "progress": {
+      "note": "Raporunuz analiz ediliyor — bu genellikle 15-30 saniye sürer.",
       "messages": [
         "Raporunuz okunuyor...",
         "Tıbbi değerler inceleniyor...",
@@ -197,13 +229,15 @@
       "generic": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin."
     },
     "limitGate": {
-      "title": "Ücretsiz hakkınız doldu",
-      "description": "2 ücretsiz analizinizi kullandınız. Sınırsız erişim için Premium'a geçin.",
-      "cta": "Premium'a Geç"
+      "title": "Son ücretsiz analizinizi kullandınız",
+      "description": "Premium ile ayda 10 analiz, analiz geçmişinize erişim ve öncelikli işleme kazanırsınız — ayda sadece $4.99.",
+      "cta": "Premium'u Keşfet"
     }
   },
   "results": {
     "title": "Analiz Sonucu",
+    "intro": "Önce genel durumu görelim",
+    "analyzedBy": "Claude AI tarafından analiz edildi — Anthropic'in güvenli yapay zeka modeli",
     "status": {
       "normal": "🟢 Normal",
       "warning": "🟡 Dikkat",

@@ -8,7 +8,8 @@
     "back": "Back",
     "tryAgain": "Try Again",
     "free": "Free",
-    "premium": "Premium"
+    "premium": "Premium",
+    "skipToContent": "Skip to content"
   },
   "nav": {
     "features": "Features",
@@ -28,7 +29,30 @@
     "cta": "Analyze for Free",
     "ctaSecondary": "How it works?",
     "disclaimer": "Not medical advice. Always review your results with a physician.",
-    "trustSuffix": "analyses completed"
+    "trustSuffix": "analyses completed",
+    "socialProof": "{count} reports analyzed this month",
+    "freeNote": "Your free plan includes 2 analyses"
+  },
+  "testimonials": {
+    "title": "What our users say",
+    "subtitle": "Thousands of people understand their reports with MediClear.",
+    "items": [
+      {
+        "quote": "I used it to understand my mother's blood test. I went to the appointment knowing which values mattered and what to ask the doctor.",
+        "name": "Zeynep K.",
+        "role": "Nurse, 34"
+      },
+      {
+        "quote": "It helped me understand my MRI report before seeing the doctor. Learning that most of the terms I feared were normal findings was a relief.",
+        "name": "Mert A.",
+        "role": "Engineer, 28"
+      },
+      {
+        "quote": "Now I can ask my doctor the right questions. Appointments are short, so going in prepared changes everything.",
+        "name": "Hasan D.",
+        "role": "Retired, 62"
+      }
+    ]
   },
   "features": {
     "title": "Why MediClear?",
@@ -69,6 +93,7 @@
     "title": "Choose the plan that fits you",
     "subtitle": "Try it free first. Upgrade anytime.",
     "perMonth": "/ month",
+    "anchor": "Less than a single doctor's visit — just $4.99 a month",
     "free": {
       "name": "Free",
       "price": "$0",
@@ -173,7 +198,14 @@
       "general": "General"
     },
     "submit": "Analyze",
+    "trust": {
+      "title": "How does this analysis work?",
+      "how": "Your report is reviewed by AI guided to translate medical documents into plain language. It extracts key findings, questions you can ask your doctor, and practical recommendations.",
+      "model": "Analyzed by Claude AI — Anthropic's safety-focused AI model.",
+      "privacy": "Your report is transmitted over an encrypted connection (HTTPS) and is not stored on our servers after it is processed for analysis."
+    },
     "progress": {
+      "note": "Your report is being analyzed — this usually takes 15-30 seconds.",
       "messages": [
         "Reading your report...",
         "Reviewing medical values...",
@@ -197,13 +229,15 @@
       "generic": "An unexpected error occurred. Please try again."
     },
     "limitGate": {
-      "title": "You've used your free analyses",
-      "description": "You've used your 2 free analyses. Upgrade to Premium for unlimited access.",
-      "cta": "Go Premium"
+      "title": "You've used your last free analysis",
+      "description": "Premium gives you 10 analyses a month, access to your analysis history, and priority processing — just $4.99/month.",
+      "cta": "Explore Premium"
     }
   },
   "results": {
     "title": "Analysis Result",
+    "intro": "Let's see the overall picture first",
+    "analyzedBy": "Analyzed by Claude AI — Anthropic's safety-focused AI model",
     "status": {
       "normal": "🟢 Normal",
       "warning": "🟡 Caution",

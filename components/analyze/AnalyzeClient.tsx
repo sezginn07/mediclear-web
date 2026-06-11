@@ -75,13 +75,27 @@ export function AnalyzeClient({ upgraded }: { upgraded: boolean }) {
 
   return (
     <div className="space-y-8">
-      {/* Usage meter */}
+      {/* Usage meter with subtle progress bar */}
       {usage && (
-        <p className="text-sm text-muted">
-          {isPremium()
-            ? t('usagePremium', { count: usage.count, limit: usage.limit })
-            : t('usageFree', { count: usage.count, limit: usage.limit })}
-        </p>
+        <div>
+          <p className="text-sm text-muted">
+            {isPremium()
+              ? t('usagePremium', { count: usage.count, limit: usage.limit })
+              : t('usageFree', { count: usage.count, limit: usage.limit })}
+          </p>
+          <div
+            role="progressbar"
+            aria-valuenow={usage.count}
+            aria-valuemin={0}
+            aria-valuemax={usage.limit}
+            className="mt-2 h-1.5 w-full max-w-xs overflow-hidden rounded-full bg-border"
+          >
+            <div
+              className="h-full rounded-full bg-primary transition-all duration-500"
+              style={{ width: `${Math.min(100, (usage.count / usage.limit) * 100)}%` }}
+            />
+          </div>
+        </div>
       )}
 
       {limitReached ? (
@@ -123,6 +137,19 @@ export function AnalyzeClient({ upgraded }: { upgraded: boolean }) {
           >
             {t('submit')}
           </Button>
+
+          {/* Trust: how the analysis works */}
+          <details className="group rounded-xl border border-border bg-white px-5 py-4">
+            <summary className="cursor-pointer list-none text-sm font-semibold text-foreground outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+              <span className="mr-2 inline-block transition-transform group-open:rotate-90">›</span>
+              {t('trust.title')}
+            </summary>
+            <div className="mt-3 space-y-2 text-sm leading-relaxed text-muted">
+              <p>{t('trust.how')}</p>
+              <p>{t('trust.model')}</p>
+              <p>{t('trust.privacy')}</p>
+            </div>
+          </details>
         </>
       )}
     </div>

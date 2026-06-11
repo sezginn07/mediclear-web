@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 // Rotates through the loading messages while the analysis is in flight.
+// role="status" + aria-live announce progress to screen readers.
 export function AnalysisProgress() {
   const t = useTranslations('analyze.progress');
   const messages = t.raw('messages') as string[];
@@ -17,12 +18,19 @@ export function AnalysisProgress() {
   }, [messages.length]);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-6 py-16">
-      <div className="h-12 w-12 animate-spin rounded-full border-4 border-blue-100 border-t-primary" />
-      <p
-        key={index}
-        className="animate-pulse text-center text-sm font-medium text-muted"
-      >
+    <div
+      role="status"
+      aria-live="polite"
+      className="flex flex-col items-center justify-center gap-5 py-16"
+    >
+      <div
+        aria-hidden="true"
+        className="h-12 w-12 animate-spin rounded-full border-4 border-blue-100 border-t-primary"
+      />
+      <p className="text-center text-base font-medium text-foreground">
+        {t('note')}
+      </p>
+      <p key={index} className="animate-pulse text-center text-sm text-muted">
         {messages[index]}
       </p>
     </div>

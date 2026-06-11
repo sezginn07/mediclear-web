@@ -8,13 +8,25 @@ const STYLES: Record<AnalysisStatus, string> = {
   urgent: 'bg-red-50 text-red-700 ring-red-200',
 };
 
-export function StatusBadge({ status }: { status: AnalysisStatus }) {
+const SIZES = {
+  md: 'px-3 py-1 text-sm',
+  lg: 'px-5 py-2 text-lg',
+} as const;
+
+export function StatusBadge({
+  status,
+  size = 'md',
+}: {
+  status: AnalysisStatus;
+  size?: keyof typeof SIZES;
+}) {
   const t = useTranslations('results.status');
   return (
     <span
       className={cn(
-        'inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold ring-1',
+        'inline-flex items-center rounded-full font-semibold ring-1',
         STYLES[status],
+        SIZES[size],
       )}
     >
       {t(status)}

@@ -13,25 +13,35 @@ function ListSection({
   items,
   marker,
   markerClass,
+  defaultOpen = true,
 }: {
   title: string;
   items: string[];
   marker: string;
   markerClass: string;
+  defaultOpen?: boolean;
 }) {
   if (!items.length) return null;
   return (
-    <div>
-      <h3 className="text-sm font-semibold text-foreground">{title}</h3>
+    <details open={defaultOpen} className="group">
+      <summary className="cursor-pointer list-none text-sm font-semibold text-foreground outline-none focus-visible:ring-2 focus-visible:ring-primary/40">
+        <span
+          aria-hidden="true"
+          className="mr-2 inline-block text-muted transition-transform group-open:rotate-90"
+        >
+          ›
+        </span>
+        {title}
+      </summary>
       <ul className="mt-3 space-y-2">
         {items.map((item, i) => (
           <li key={i} className="flex items-start gap-2 text-sm text-foreground">
-            <span className={markerClass}>{marker}</span>
+            <span aria-hidden="true" className={markerClass}>{marker}</span>
             <span className="leading-relaxed">{item}</span>
           </li>
         ))}
       </ul>
-    </div>
+    </details>
   );
 }
 
@@ -40,9 +50,12 @@ export function ResultsCard({ result }: { result: AnalysisResult }) {
 
   return (
     <div className="space-y-6">
-      {/* Header: status + actions */}
+      {/* Calm framing: overall picture first */}
+      <p className="text-sm text-muted">{t('intro')}</p>
+
+      {/* Header: large status badge + actions */}
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <StatusBadge status={result.status} />
+        <StatusBadge status={result.status} size="lg" />
         <div className="flex gap-2 no-print">
           <ShareButton result={result} />
           <Button
@@ -55,7 +68,7 @@ export function ResultsCard({ result }: { result: AnalysisResult }) {
         </div>
       </div>
 
-      {/* Summary */}
+      {/* Summary — always first, always visible */}
       <Card className="p-6">
         <h2 className="text-sm font-semibold text-foreground">{t('summary')}</h2>
         <p className="mt-2 leading-relaxed text-foreground">{result.summary}</p>
@@ -71,7 +84,7 @@ export function ResultsCard({ result }: { result: AnalysisResult }) {
         )}
       </Card>
 
-      {/* Key findings */}
+      {/* Key findings — important, expanded by default */}
       {result.keyFindings.length > 0 && (
         <Card className="p-6">
           <ListSection
@@ -95,7 +108,7 @@ export function ResultsCard({ result }: { result: AnalysisResult }) {
         </Card>
       )}
 
-      {/* Do / Don't */}
+      {/* Do / Don't grouped together */}
       {(result.doList.length > 0 || result.dontList.length > 0) && (
         <div className="grid gap-6 md:grid-cols-2">
           {result.doList.length > 0 && (
@@ -121,14 +134,15 @@ export function ResultsCard({ result }: { result: AnalysisResult }) {
         </div>
       )}
 
-      {/* Disclaimer — amber */}
-      <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
-        <h3 className="text-sm font-semibold text-amber-800">
+      {/* Disclaimer — visible but calm, not an alarming warning box */}
+      <div className="rounded-2xl border border-border bg-surface p-5">
+        <h3 className="text-sm font-semibold text-foreground">
           {t('disclaimer')}
         </h3>
-        <p className="mt-1 text-sm leading-relaxed text-amber-700">
+        <p className="mt-1 text-sm leading-relaxed text-muted">
           {result.disclaimer}
         </p>
+        <p className="mt-3 text-xs text-muted">{t('analyzedBy')}</p>
       </div>
 
       <div className="flex justify-center pt-2 no-print">
