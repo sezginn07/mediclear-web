@@ -59,6 +59,11 @@ export function FileUploader({
 
   return (
     <div>
+      {/* Vulnerability moment: reassure BEFORE the upload, not after. */}
+      <p className="mb-3 flex items-center gap-1.5 text-xs text-muted">
+        <span aria-hidden="true" className="text-status-normal">🔒</span>
+        {t('privacyNote')}
+      </p>
       <input
         ref={inputRef}
         type="file"

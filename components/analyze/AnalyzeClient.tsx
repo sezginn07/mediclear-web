@@ -99,16 +99,44 @@ export function AnalyzeClient({ upgraded }: { upgraded: boolean }) {
       )}
 
       {limitReached ? (
+        /* The paywall is a door, not a wall: lead with value, show what
+           unlocks, anchor the price per-day, close with a human story. */
         <Card className="p-8 text-center">
-          <h2 className="text-lg font-semibold text-foreground">
+          <h2 className="text-xl font-bold text-foreground">
             {t('limitGate.title')}
           </h2>
           <p className="mx-auto mt-2 max-w-md text-sm text-muted">
             {t('limitGate.description')}
           </p>
-          <Button className="mt-6" onClick={() => router.push('/pricing')}>
+
+          <ul className="mx-auto mt-5 flex max-w-md flex-wrap items-center justify-center gap-2">
+            {(t.raw('limitGate.locked') as string[]).map((f) => (
+              <li
+                key={f}
+                className="flex items-center gap-1.5 rounded-full bg-primary-light px-3 py-1.5 text-xs font-medium text-primary"
+              >
+                <span aria-hidden="true">🔓</span>
+                {f}
+              </li>
+            ))}
+          </ul>
+
+          <p className="mt-5 text-sm font-semibold text-foreground">
+            {t('limitGate.perDay')}
+          </p>
+
+          <Button className="mt-5" size="lg" onClick={() => router.push('/pricing')}>
             {t('limitGate.cta')}
           </Button>
+
+          <figure className="mx-auto mt-6 max-w-md border-t border-border pt-5">
+            <blockquote className="text-sm italic leading-relaxed text-muted">
+              {t('limitGate.testimonial')}
+            </blockquote>
+            <figcaption className="mt-2 text-xs font-medium text-muted-soft">
+              {t('limitGate.testimonialAuthor')}
+            </figcaption>
+          </figure>
         </Card>
       ) : (
         <>

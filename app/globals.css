@@ -77,6 +77,15 @@ body {
   left: 0;
 }
 
+/* Soft indeterminate progress bar used while an analysis is in flight. */
+@keyframes progress-soft {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(420%); }
+}
+.progress-soft {
+  animation: progress-soft 1.6s ease-in-out infinite;
+}
+
 /* Respect reduced-motion preferences. */
 @media (prefers-reduced-motion: reduce) {
   *,

@@ -33,6 +33,10 @@ export function AnalysisProgress() {
       <p key={index} className="animate-pulse text-center text-sm text-muted">
         {messages[index]}
       </p>
+      {/* Soft indeterminate progress bar */}
+      <div aria-hidden="true" className="h-1.5 w-56 overflow-hidden rounded-full bg-primary-light">
+        <div className="progress-soft h-full w-1/3 rounded-full bg-primary" />
+      </div>
     </div>
   );
 }
