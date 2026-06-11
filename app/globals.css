@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/* MediClear web palette — clean, medical, trustworthy. Light only. */
+:root {
+  --background: #f8fafd;
+  --foreground: #0f172a;
+  --muted: #64748b;
+  --card: #ffffff;
+  --border: #e2e8f0;
+
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+
+  /* Status colors — language-neutral, used across analyze + results. */
+  --status-normal: #22c55e;
+  --status-warning: #f59e0b;
+  --status-urgent: #ef4444;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-status-normal: var(--status-normal);
+  --color-status-warning: var(--status-warning);
+  --color-status-urgent: var(--status-urgent);
+  --font-sans: var(--font-inter);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* ── Scroll-triggered CSS animations ──────────────────────────────────────
+   Elements start in the "before" state and get .is-visible added by
+   IntersectionObserver (useInView hook) once they enter the viewport.
+   Using inline styles + CSS transitions avoids Framer Motion's
+   IntersectionObserver issues on non-localhost origins.
+──────────────────────────────────────────────────────────────────────── */
+
+/* fade-up: used by Features cards */
+.anim-fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.anim-fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* slide-left: used by HowItWorks steps */
+.anim-slide-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.anim-slide-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}

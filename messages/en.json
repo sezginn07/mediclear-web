@@ -1,0 +1,386 @@
+{
+  "common": {
+    "appName": "MediClear",
+    "tagline": "Turn your medical reports into plain language",
+    "analyzeNow": "Analyze Now",
+    "analyzeAnother": "Analyze Another Report",
+    "loading": "Loading...",
+    "back": "Back",
+    "tryAgain": "Try Again",
+    "free": "Free",
+    "premium": "Premium"
+  },
+  "nav": {
+    "features": "Features",
+    "howItWorks": "How It Works",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "startAnalysis": "Start Analysis",
+    "signIn": "Sign In",
+    "getStarted": "Get Started Free",
+    "myAccount": "My Account",
+    "signOut": "Sign Out"
+  },
+  "hero": {
+    "badge": "AI-powered health assistant",
+    "title": "Understand your medical reports in seconds",
+    "subtitle": "Upload your blood test, X-ray, pathology report and more. We translate complex medical terms into plain language anyone can understand.",
+    "cta": "Analyze for Free",
+    "ctaSecondary": "How it works?",
+    "disclaimer": "Not medical advice. Always review your results with a physician.",
+    "trustSuffix": "analyses completed"
+  },
+  "features": {
+    "title": "Why MediClear?",
+    "subtitle": "Understanding your health data has never been this easy.",
+    "items": {
+      "instant": {
+        "title": "Instant Results",
+        "description": "Upload your report and get a plain-language explanation in seconds. No waiting."
+      },
+      "plainLanguage": {
+        "title": "Plain Language",
+        "description": "Forget the medical jargon. We explain every finding in clear, everyday language."
+      },
+      "private": {
+        "title": "Private & Secure",
+        "description": "Your reports are processed for analysis, not stored on our servers. Your data is yours."
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "Clear health in three steps",
+    "steps": {
+      "upload": {
+        "title": "Upload Report",
+        "description": "Upload your medical report as a PDF or photo."
+      },
+      "select": {
+        "title": "Select Category",
+        "description": "Choose the report type — blood test, radiology, pathology and more."
+      },
+      "understand": {
+        "title": "Understand Results",
+        "description": "Get a plain explanation, key findings and questions to ask your doctor."
+      }
+    }
+  },
+  "pricing": {
+    "title": "Choose the plan that fits you",
+    "subtitle": "Try it free first. Upgrade anytime.",
+    "perMonth": "/ month",
+    "free": {
+      "name": "Free",
+      "price": "$0",
+      "description": "Perfect for trying it out",
+      "features": [
+        "2 free analyses",
+        "All report categories",
+        "Plain-language explanations",
+        "Suggested questions for your doctor"
+      ],
+      "cta": "Start for Free"
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "$4.99",
+      "description": "For regular follow-ups",
+      "badge": "Most Popular",
+      "features": [
+        "10 analyses per month",
+        "All report categories",
+        "Priority processing",
+        "Save and share as PDF",
+        "Unlimited history access"
+      ],
+      "cta": "Go Premium"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "Does MediClear give medical advice?",
+        "answer": "No. MediClear only translates your reports into plain language and is for informational purposes only. It never substitutes for medical advice, diagnosis or treatment. Always review your results with a physician."
+      },
+      {
+        "question": "What types of reports can I analyze?",
+        "answer": "You can analyze blood tests, radiology (X-ray, MRI, CT), pathology, cardiology (ECG, echo), hormone tests and general medical reports."
+      },
+      {
+        "question": "Is my data safe?",
+        "answer": "Your reports are processed only for analysis and are not permanently stored on our servers. Once the analysis is complete, your file is not retained."
+      },
+      {
+        "question": "Which file formats can I upload?",
+        "answer": "You can upload PDF, JPG, PNG and WebP files. The maximum file size is 20 MB."
+      },
+      {
+        "question": "How long does an analysis take?",
+        "answer": "Most analyses finish within seconds. Complex or multi-page reports may take a little longer."
+      },
+      {
+        "question": "How many analyses do I get on the free plan?",
+        "answer": "The free plan includes a total of 2 analyses. Upgrade to Premium for more."
+      },
+      {
+        "question": "What does Premium offer?",
+        "answer": "Premium gives you 10 analyses per month, priority processing, PDF saving and sharing, and unlimited history access. $4.99 per month."
+      },
+      {
+        "question": "Can I cancel my subscription?",
+        "answer": "Yes, you can cancel anytime. After cancellation you keep Premium features until the end of the billing period."
+      },
+      {
+        "question": "What if I pick the wrong category?",
+        "answer": "MediClear checks the type of document you upload. If it doesn't match your chosen category, it warns you and asks you to select the correct one."
+      },
+      {
+        "question": "Can I trust the results?",
+        "answer": "MediClear uses powerful AI, but AI can make mistakes. Treat the results as a starting point and always consult a healthcare professional."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "The AI assistant that turns your medical reports into plain language.",
+    "disclaimer": "MediClear does not provide medical advice. It is for informational purposes only. Consult a physician for decisions about your health.",
+    "rights": "All rights reserved.",
+    "product": "Product",
+    "legal": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use"
+  },
+  "analyze": {
+    "title": "Analyze Your Report",
+    "subtitle": "Upload your file and choose the report type.",
+    "usageFree": "{count}/{limit} free analyses used",
+    "usagePremium": "{count}/{limit} analyses used this month",
+    "upload": {
+      "title": "Drag your report here",
+      "subtitle": "or click to select a file",
+      "formats": "PDF, JPG, PNG, WebP — up to 20 MB",
+      "selectFile": "Select File",
+      "change": "Change File",
+      "remove": "Remove"
+    },
+    "category": {
+      "title": "Select the report type",
+      "blood": "Blood Test",
+      "radiology": "Radiology",
+      "pathology": "Pathology",
+      "cardiology": "Cardiology",
+      "hormone": "Hormone",
+      "general": "General"
+    },
+    "submit": "Analyze",
+    "progress": {
+      "messages": [
+        "Reading your report...",
+        "Reviewing medical values...",
+        "Translating findings into plain language...",
+        "Identifying key points...",
+        "Preparing your results..."
+      ]
+    },
+    "errors": {
+      "noFile": "Please upload a file first.",
+      "noCategory": "Please select a report category.",
+      "tooLarge": "File is too large. You can upload up to 20 MB.",
+      "badType": "Unsupported file type. Upload a PDF, JPG, PNG or WebP.",
+      "limitReached": "You've used all your free analyses. Upgrade to Premium to continue.",
+      "config": "The service is not configured right now. Please try again later.",
+      "auth": "Access to the service was denied. Please try again later.",
+      "rate_limit": "Too many requests. Please try again in a moment.",
+      "server": "The analysis service hit an error. Please try again.",
+      "parse": "We couldn't process the result. Please try again.",
+      "network": "Couldn't reach the service. Check your internet connection.",
+      "generic": "An unexpected error occurred. Please try again."
+    },
+    "limitGate": {
+      "title": "You've used your free analyses",
+      "description": "You've used your 2 free analyses. Upgrade to Premium for unlimited access.",
+      "cta": "Go Premium"
+    }
+  },
+  "results": {
+    "title": "Analysis Result",
+    "status": {
+      "normal": "🟢 Normal",
+      "warning": "🟡 Caution",
+      "urgent": "🔴 Urgent"
+    },
+    "summary": "Summary",
+    "urgency": "Urgency",
+    "keyFindings": "Key Findings",
+    "doctorQuestions": "Questions for Your Doctor",
+    "doList": "Recommended Do's",
+    "dontList": "Recommended Don'ts",
+    "disclaimer": "Important Notice",
+    "share": "Share",
+    "shareCopied": "Copied to clipboard",
+    "print": "Print / Save as PDF",
+    "analyzeAnother": "Analyze Another Report"
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "lastUpdated": "Last updated: June 2026",
+    "disclaimer": {
+      "heading": "Important Medical Disclaimer",
+      "body": "MediClear does not provide medical advice. It is for informational purposes only. Always consult a physician for decisions about your health."
+    },
+    "sections": {
+      "service": {
+        "title": "Service Description",
+        "body": "MediClear is a web application that uses artificial intelligence to translate medical reports into plain language. The service is provided for informational purposes only and does not constitute medical diagnosis, treatment, or advice."
+      },
+      "medical": {
+        "title": "Medical Disclaimer",
+        "body": "Content provided by MediClear cannot replace the assessment of a healthcare professional. Information obtained through the application is not an alternative to consulting your doctor or other qualified healthcare professionals. In a medical emergency, call 911 or your local emergency services immediately."
+      },
+      "user": {
+        "title": "User Responsibilities",
+        "body": "You agree to use the application only for personal and lawful purposes, and that the documents you upload belong to you or that you are authorized to upload and process them. Any misuse of the application is solely the responsibility of the user."
+      },
+      "subscription": {
+        "title": "Subscription Terms",
+        "body": "Premium subscriptions are billed monthly. You may cancel your subscription at any time; after cancellation, you retain access to Premium features until the end of the current billing period. Refunds are handled in accordance with applicable law."
+      },
+      "liability": {
+        "title": "Limitation of Liability",
+        "body": "MediClear and its stakeholders are not liable for any direct, indirect, or special damages that may arise from the use of the application, inability to use it, or interpretation of the content provided. The application is provided 'as is'."
+      },
+      "contact": {
+        "title": "Contact",
+        "body": "For questions about these terms, contact us at dev.snapps07@gmail.com."
+      }
+    }
+  },
+  "stripe": {
+    "redirecting": "Redirecting you to checkout...",
+    "success": "Welcome to Premium! You can now run 10 analyses per month.",
+    "spoofNote": "Note: In this demo, Premium status is stored in your browser."
+  },
+  "auth": {
+    "login": {
+      "title": "Sign In",
+      "subtitle": "Sign in to your MediClear account",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "submit": "Sign In",
+      "submitting": "Signing in...",
+      "forgotPassword": "Forgot Password",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up",
+      "orContinueWith": "or continue with",
+      "continueWithGoogle": "Continue with Google",
+      "emailNotConfirmed": "Please confirm your email address. Check your inbox.",
+      "invalidCredentials": "Invalid email or password."
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Open a free MediClear account",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "password": "Password",
+      "passwordPlaceholder": "At least 8 characters",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "Re-enter your password",
+      "passwordMismatch": "Passwords do not match.",
+      "passwordTooShort": "Password must be at least 8 characters.",
+      "termsLabel": "I have read and agree to the <terms>Terms of Service</terms>",
+      "termsConsent": "I have read and accept the <terms>Terms of Service</terms>",
+      "termsRequired": "You must accept the terms to continue.",
+      "termsConsentRequired": "You must accept the Terms of Service to continue.",
+      "kvkkConsent": "I consent to the processing of my personal data in accordance with data protection regulations (<privacy>Privacy Policy</privacy>)",
+      "kvkkConsentRequired": "You must provide KVKK consent to continue.",
+      "submit": "Create Account",
+      "submitting": "Creating account...",
+      "alreadyHaveAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "successTitle": "Confirmation email sent",
+      "successMessage": "A confirmation link has been sent to your email. Please check your inbox.",
+      "strengthWeak": "Weak",
+      "strengthMedium": "Medium",
+      "strengthStrong": "Strong"
+    },
+    "confirm": {
+      "verifying": "Verifying email...",
+      "success": "Email confirmed! Redirecting...",
+      "error": "Confirmation link is invalid or has expired.",
+      "resendLink": "Send a new confirmation link",
+      "backToLogin": "Back to sign in"
+    },
+    "forgotPassword": {
+      "title": "Forgot Password",
+      "subtitle": "Enter your email and we'll send you a reset link.",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "submit": "Send Reset Link",
+      "submitting": "Sending...",
+      "successMessage": "Password reset link sent. Please check your email.",
+      "backToLogin": "Back to sign in"
+    },
+    "resetPassword": {
+      "title": "Set New Password",
+      "subtitle": "Choose a new password for your account.",
+      "newPassword": "New Password",
+      "newPasswordPlaceholder": "At least 8 characters",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "Re-enter new password",
+      "submit": "Update Password",
+      "submitting": "Updating...",
+      "successMessage": "Password updated. Redirecting...",
+      "passwordMismatch": "Passwords do not match.",
+      "passwordTooShort": "Password must be at least 8 characters."
+    },
+    "errors": {
+      "generic": "An error occurred. Please try again."
+    }
+  },
+  "account": {
+    "title": "My Account",
+    "emailChange": {
+      "title": "Email Address",
+      "toggle": "Change Email",
+      "cancel": "Cancel",
+      "placeholder": "New email address",
+      "submit": "Send Confirmation",
+      "submitting": "Sending...",
+      "success": "Confirmation link sent to your new email. Change will take effect after confirmation.",
+      "sameEmail": "This is already your current email."
+    },
+    "profile": {
+      "title": "Profile",
+      "memberSince": "Member since"
+    },
+    "plan": {
+      "title": "Plan",
+      "free": "Free Plan",
+      "premium": "Premium",
+      "freeUsage": "{count}/{limit} analyses used (lifetime)",
+      "premiumUsage": "{count}/{limit} analyses used this month",
+      "renewalDate": "Renewal date",
+      "upgrade": "Go Premium"
+    },
+    "history": {
+      "title": "Analysis History",
+      "locked": "Upgrade to Premium to view your analysis history",
+      "empty": "No analysis history yet",
+      "view": "View",
+      "today": "Today",
+      "yesterday": "Yesterday"
+    },
+    "signOut": "Sign Out",
+    "dangerZone": {
+      "title": "Danger Zone",
+      "deleteAccount": "Delete Account",
+      "deleteWarning": "All your data will be permanently deleted. This cannot be undone.",
+      "deleteConfirmPrompt": "Type DELETE to confirm",
+      "deleteConfirmPlaceholder": "DELETE",
+      "confirmButton": "Permanently Delete Account",
+      "cancel": "Cancel"
+    }
+  }
+}

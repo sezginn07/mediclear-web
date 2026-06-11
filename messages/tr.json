@@ -1,0 +1,386 @@
+{
+  "common": {
+    "appName": "MediClear",
+    "tagline": "Tıbbi raporlarınızı anlaşılır dile çevirin",
+    "analyzeNow": "Hemen Analiz Et",
+    "analyzeAnother": "Başka Bir Rapor Analiz Et",
+    "loading": "Yükleniyor...",
+    "back": "Geri",
+    "tryAgain": "Tekrar Dene",
+    "free": "Ücretsiz",
+    "premium": "Premium"
+  },
+  "nav": {
+    "features": "Özellikler",
+    "howItWorks": "Nasıl Çalışır",
+    "pricing": "Fiyatlandırma",
+    "faq": "S.S.S.",
+    "startAnalysis": "Analize Başla",
+    "signIn": "Giriş Yap",
+    "getStarted": "Ücretsiz Başla",
+    "myAccount": "Hesabım",
+    "signOut": "Çıkış Yap"
+  },
+  "hero": {
+    "badge": "Yapay zeka destekli sağlık asistanı",
+    "title": "Tıbbi raporlarınızı saniyeler içinde anlayın",
+    "subtitle": "Kan tahlili, röntgen, patoloji ve daha fazlasını yükleyin. Karmaşık tıbbi terimleri herkesin anlayabileceği sade bir dile çevirelim.",
+    "cta": "Ücretsiz Analiz Et",
+    "ctaSecondary": "Nasıl çalışır?",
+    "disclaimer": "Tıbbi tavsiye değildir. Sonuçlarınızı her zaman bir hekimle değerlendirin.",
+    "trustSuffix": "analizler yapıldı"
+  },
+  "features": {
+    "title": "Neden MediClear?",
+    "subtitle": "Sağlık verilerinizi anlamak hiç bu kadar kolay olmamıştı.",
+    "items": {
+      "instant": {
+        "title": "Anında Sonuç",
+        "description": "Raporunuzu yükleyin, saniyeler içinde sade bir açıklama alın. Beklemek yok."
+      },
+      "plainLanguage": {
+        "title": "Sade Dil",
+        "description": "Tıbbi jargonu unutun. Her bulguyu günlük dille, anlaşılır şekilde açıklıyoruz."
+      },
+      "private": {
+        "title": "Gizli ve Güvenli",
+        "description": "Raporlarınız analiz için işlenir, sunucularımızda saklanmaz. Verileriniz size aittir."
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "Üç adımda anlaşılır sağlık",
+    "steps": {
+      "upload": {
+        "title": "Raporu Yükleyin",
+        "description": "PDF veya fotoğraf olarak tıbbi raporunuzu yükleyin."
+      },
+      "select": {
+        "title": "Kategori Seçin",
+        "description": "Kan tahlili, röntgen, patoloji gibi rapor türünü seçin."
+      },
+      "understand": {
+        "title": "Sonucu Anlayın",
+        "description": "Sade açıklama, önemli bulgular ve doktora soracağınız soruları alın."
+      }
+    }
+  },
+  "pricing": {
+    "title": "Size uygun planı seçin",
+    "subtitle": "Önce ücretsiz deneyin. İstediğiniz zaman yükseltin.",
+    "perMonth": "/ ay",
+    "free": {
+      "name": "Ücretsiz",
+      "price": "₺0",
+      "description": "Denemek için ideal",
+      "features": [
+        "2 ücretsiz analiz",
+        "Tüm rapor kategorileri",
+        "Sade dil açıklamaları",
+        "Doktora soru önerileri"
+      ],
+      "cta": "Ücretsiz Başla"
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "$4.99",
+      "description": "Düzenli takip edenler için",
+      "badge": "En Popüler",
+      "features": [
+        "Ayda 10 analiz",
+        "Tüm rapor kategorileri",
+        "Öncelikli işleme",
+        "PDF olarak kaydetme ve paylaşma",
+        "Sınırsız geçmiş erişimi"
+      ],
+      "cta": "Premium'a Geç"
+    }
+  },
+  "faq": {
+    "title": "Sıkça Sorulan Sorular",
+    "items": [
+      {
+        "question": "MediClear tıbbi tavsiye veriyor mu?",
+        "answer": "Hayır. MediClear yalnızca raporlarınızı sade bir dile çevirir ve bilgilendirme amaçlıdır. Hiçbir zaman tıbbi tavsiye, teşhis veya tedavi önerisi yerine geçmez. Sonuçlarınızı mutlaka bir hekimle değerlendirin."
+      },
+      {
+        "question": "Hangi rapor türlerini analiz edebilirim?",
+        "answer": "Kan tahlilleri, radyoloji (röntgen, MR, BT), patoloji, kardiyoloji (EKG, eko), hormon testleri ve genel tıbbi raporları analiz edebilirsiniz."
+      },
+      {
+        "question": "Verilerim güvende mi?",
+        "answer": "Raporlarınız yalnızca analiz için işlenir ve sunucularımızda kalıcı olarak saklanmaz. Analiz tamamlandıktan sonra dosyanız bizde tutulmaz."
+      },
+      {
+        "question": "Hangi dosya formatlarını yükleyebilirim?",
+        "answer": "PDF, JPG, PNG ve WebP dosyalarını yükleyebilirsiniz. Dosya boyutu en fazla 20 MB olmalıdır."
+      },
+      {
+        "question": "Analiz ne kadar sürer?",
+        "answer": "Çoğu analiz birkaç saniye içinde tamamlanır. Karmaşık veya çok sayfalı raporlar biraz daha uzun sürebilir."
+      },
+      {
+        "question": "Ücretsiz planda kaç analiz yapabilirim?",
+        "answer": "Ücretsiz planda toplam 2 analiz hakkınız vardır. Daha fazlası için Premium'a geçebilirsiniz."
+      },
+      {
+        "question": "Premium ne sunuyor?",
+        "answer": "Premium ile ayda 10 analiz, öncelikli işleme, PDF kaydetme ve paylaşma ile sınırsız geçmiş erişimi elde edersiniz. Aylık $4.99."
+      },
+      {
+        "question": "Aboneliğimi iptal edebilir miyim?",
+        "answer": "Evet, aboneliğinizi istediğiniz zaman iptal edebilirsiniz. İptal sonrası dönem sonuna kadar Premium özelliklerini kullanmaya devam edersiniz."
+      },
+      {
+        "question": "Yanlış kategori seçersem ne olur?",
+        "answer": "MediClear yüklediğiniz belgenin türünü kontrol eder. Seçtiğiniz kategoriyle uyuşmuyorsa sizi uyarır ve doğru kategoriyi seçmenizi ister."
+      },
+      {
+        "question": "Sonuçlara güvenebilir miyim?",
+        "answer": "MediClear güçlü bir yapay zeka kullanır, ancak yapay zeka hata yapabilir. Sonuçları bir başlangıç noktası olarak görün ve her zaman bir sağlık uzmanına danışın."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Tıbbi raporlarınızı anlaşılır dile çeviren yapay zeka asistanı.",
+    "disclaimer": "MediClear tıbbi tavsiye vermez. Yalnızca bilgilendirme amaçlıdır. Sağlığınızla ilgili kararlar için bir hekime danışın.",
+    "rights": "Tüm hakları saklıdır.",
+    "product": "Ürün",
+    "legal": "Yasal",
+    "privacy": "Gizlilik Politikası",
+    "terms": "Kullanım Koşulları"
+  },
+  "analyze": {
+    "title": "Raporunuzu Analiz Edin",
+    "subtitle": "Dosyanızı yükleyin ve rapor türünü seçin.",
+    "usageFree": "{count}/{limit} ücretsiz analiz kullanıldı",
+    "usagePremium": "Bu ay {count}/{limit} analiz kullanıldı",
+    "upload": {
+      "title": "Raporu buraya sürükleyin",
+      "subtitle": "veya dosya seçmek için tıklayın",
+      "formats": "PDF, JPG, PNG, WebP — en fazla 20 MB",
+      "selectFile": "Dosya Seç",
+      "change": "Dosyayı Değiştir",
+      "remove": "Kaldır"
+    },
+    "category": {
+      "title": "Rapor türünü seçin",
+      "blood": "Kan Tahlili",
+      "radiology": "Radyoloji",
+      "pathology": "Patoloji",
+      "cardiology": "Kardiyoloji",
+      "hormone": "Hormon",
+      "general": "Genel"
+    },
+    "submit": "Analiz Et",
+    "progress": {
+      "messages": [
+        "Raporunuz okunuyor...",
+        "Tıbbi değerler inceleniyor...",
+        "Bulgular sade dile çevriliyor...",
+        "Önemli noktalar belirleniyor...",
+        "Sonuçlar hazırlanıyor..."
+      ]
+    },
+    "errors": {
+      "noFile": "Lütfen önce bir dosya yükleyin.",
+      "noCategory": "Lütfen bir rapor kategorisi seçin.",
+      "tooLarge": "Dosya çok büyük. En fazla 20 MB yükleyebilirsiniz.",
+      "badType": "Desteklenmeyen dosya türü. PDF, JPG, PNG veya WebP yükleyin.",
+      "limitReached": "Ücretsiz analiz hakkınız doldu. Devam etmek için Premium'a geçin.",
+      "config": "Servis şu anda yapılandırılmamış. Lütfen daha sonra tekrar deneyin.",
+      "auth": "Servise erişim reddedildi. Lütfen daha sonra tekrar deneyin.",
+      "rate_limit": "Çok fazla istek gönderildi. Lütfen biraz sonra tekrar deneyin.",
+      "server": "Analiz servisinde bir hata oluştu. Lütfen tekrar deneyin.",
+      "parse": "Sonuç işlenemedi. Lütfen tekrar deneyin.",
+      "network": "Servise ulaşılamadı. İnternet bağlantınızı kontrol edin.",
+      "generic": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin."
+    },
+    "limitGate": {
+      "title": "Ücretsiz hakkınız doldu",
+      "description": "2 ücretsiz analizinizi kullandınız. Sınırsız erişim için Premium'a geçin.",
+      "cta": "Premium'a Geç"
+    }
+  },
+  "results": {
+    "title": "Analiz Sonucu",
+    "status": {
+      "normal": "🟢 Normal",
+      "warning": "🟡 Dikkat",
+      "urgent": "🔴 Acil"
+    },
+    "summary": "Özet",
+    "urgency": "Aciliyet Durumu",
+    "keyFindings": "Önemli Bulgular",
+    "doctorQuestions": "Doktorunuza Sorabilecekleriniz",
+    "doList": "Yapmanız Önerilenler",
+    "dontList": "Kaçınmanız Önerilenler",
+    "disclaimer": "Önemli Uyarı",
+    "share": "Paylaş",
+    "shareCopied": "Panoya kopyalandı",
+    "print": "Yazdır / PDF olarak kaydet",
+    "analyzeAnother": "Başka Bir Rapor Analiz Et"
+  },
+  "terms": {
+    "title": "Kullanım Koşulları",
+    "lastUpdated": "Son güncelleme: Haziran 2026",
+    "disclaimer": {
+      "heading": "Önemli Tıbbi Uyarı",
+      "body": "MediClear tıbbi tavsiye vermez. Yalnızca bilgilendirme amaçlıdır. Sağlığınızla ilgili her türlü karar için mutlaka bir hekime danışın."
+    },
+    "sections": {
+      "service": {
+        "title": "Hizmet Açıklaması",
+        "body": "MediClear, kullanıcıların tıbbi raporlarını yapay zeka teknolojisi aracılığıyla sade bir dile çevirmesine olanak tanıyan bir web uygulamasıdır. Hizmet yalnızca bilgilendirme amacıyla sunulmaktadır; tıbbi tanı, tedavi veya tavsiye niteliği taşımaz."
+      },
+      "medical": {
+        "title": "Tıbbi Sorumluluk Reddi",
+        "body": "MediClear'ın sunduğu içerikler bir sağlık profesyonelinin değerlendirmesinin yerini alamaz. Uygulama aracılığıyla elde edilen bilgiler, doktorunuza veya diğer yetkili sağlık uzmanlarına danışmanın alternatifi değildir. Acil bir sağlık durumunda derhal 112'yi veya bölgenizdeki acil servisi arayın."
+      },
+      "user": {
+        "title": "Kullanıcı Sorumlulukları",
+        "body": "Uygulamayı yalnızca kişisel ve yasal amaçlar doğrultusunda kullanmayı, yüklediğiniz belgelerin size ait olduğunu veya bu belgeleri yükleme ve işleme konusunda yetkili olduğunuzu kabul edersiniz. Uygulamanın kötüye kullanımından doğacak her türlü sorumluluk kullanıcıya aittir."
+      },
+      "subscription": {
+        "title": "Abonelik Koşulları",
+        "body": "Premium abonelikler aylık olarak faturalandırılır. Aboneliğinizi istediğiniz zaman iptal edebilirsiniz; iptal sonrasında mevcut dönem sonuna kadar Premium özelliklerinden yararlanmaya devam edersiniz. İadeler, geçerli mevzuat çerçevesinde değerlendirilir."
+      },
+      "liability": {
+        "title": "Sorumluluk Sınırlaması",
+        "body": "MediClear ve paydaşları; uygulamanın kullanımından, kullanılamamasından veya sunulan içeriklerin yorumlanmasından kaynaklanabilecek herhangi bir doğrudan, dolaylı veya özel zarardan sorumlu tutulamaz. Uygulama 'olduğu gibi' sunulmaktadır."
+      },
+      "contact": {
+        "title": "İletişim",
+        "body": "Kullanım koşullarıyla ilgili sorularınız için dev.snapps07@gmail.com adresine ulaşabilirsiniz."
+      }
+    }
+  },
+  "stripe": {
+    "redirecting": "Ödeme sayfasına yönlendiriliyorsunuz...",
+    "success": "Premium'a hoş geldiniz! Artık ayda 10 analiz yapabilirsiniz.",
+    "spoofNote": "Not: Bu demo sürümünde Premium durumu tarayıcıda saklanır."
+  },
+  "auth": {
+    "login": {
+      "title": "Giriş Yap",
+      "subtitle": "MediClear hesabınıza giriş yapın",
+      "email": "E-posta",
+      "emailPlaceholder": "ornek@email.com",
+      "password": "Şifre",
+      "passwordPlaceholder": "Şifrenizi girin",
+      "submit": "Giriş Yap",
+      "submitting": "Giriş yapılıyor...",
+      "forgotPassword": "Şifremi Unuttum",
+      "noAccount": "Hesabın yok mu?",
+      "signUp": "Kayıt Ol",
+      "orContinueWith": "veya şununla devam edin",
+      "continueWithGoogle": "Google ile Devam Et",
+      "emailNotConfirmed": "E-posta adresinizi doğrulamanız gerekiyor. Lütfen e-postanızı kontrol edin.",
+      "invalidCredentials": "E-posta veya şifre hatalı."
+    },
+    "register": {
+      "title": "Hesap Oluştur",
+      "subtitle": "Ücretsiz MediClear hesabı açın",
+      "email": "E-posta",
+      "emailPlaceholder": "ornek@email.com",
+      "password": "Şifre",
+      "passwordPlaceholder": "En az 8 karakter",
+      "confirmPassword": "Şifre Tekrar",
+      "confirmPasswordPlaceholder": "Şifrenizi tekrar girin",
+      "passwordMismatch": "Şifreler eşleşmiyor.",
+      "passwordTooShort": "Şifre en az 8 karakter olmalıdır.",
+      "termsLabel": "<terms>Kullanım Koşulları</terms>'nı okudum ve kabul ediyorum",
+      "termsConsent": "<terms>Kullanım Koşulları</terms>'nı okudum ve kabul ediyorum",
+      "termsRequired": "Devam etmek için koşulları kabul etmeniz gerekiyor.",
+      "termsConsentRequired": "Kullanım Koşulları'nı kabul etmeniz gerekiyor.",
+      "kvkkConsent": "Kişisel verilerimin 6698 sayılı KVKK kapsamında işlenmesini <privacy>Gizlilik Politikası</privacy>'nı okuyarak kabul ediyorum",
+      "kvkkConsentRequired": "KVKK onayı vermeniz gerekiyor.",
+      "submit": "Hesap Oluştur",
+      "submitting": "Hesap oluşturuluyor...",
+      "alreadyHaveAccount": "Zaten hesabın var mı?",
+      "signIn": "Giriş Yap",
+      "successTitle": "Doğrulama e-postası gönderildi",
+      "successMessage": "E-posta adresinize doğrulama linki gönderildi. Lütfen e-postanızı kontrol edin.",
+      "strengthWeak": "Zayıf",
+      "strengthMedium": "Orta",
+      "strengthStrong": "Güçlü"
+    },
+    "confirm": {
+      "verifying": "E-posta doğrulanıyor...",
+      "success": "E-posta adresiniz doğrulandı! Yönlendiriliyorsunuz...",
+      "error": "Doğrulama bağlantısı geçersiz veya süresi dolmuş.",
+      "resendLink": "Yeni doğrulama linki gönder",
+      "backToLogin": "Giriş sayfasına dön"
+    },
+    "forgotPassword": {
+      "title": "Şifremi Unuttum",
+      "subtitle": "E-posta adresinizi girin, şifre sıfırlama linki gönderelim.",
+      "email": "E-posta",
+      "emailPlaceholder": "ornek@email.com",
+      "submit": "Sıfırlama Linki Gönder",
+      "submitting": "Gönderiliyor...",
+      "successMessage": "Şifre sıfırlama linki gönderildi. Lütfen e-postanızı kontrol edin.",
+      "backToLogin": "Giriş sayfasına dön"
+    },
+    "resetPassword": {
+      "title": "Yeni Şifre Belirle",
+      "subtitle": "Hesabınız için yeni bir şifre belirleyin.",
+      "newPassword": "Yeni Şifre",
+      "newPasswordPlaceholder": "En az 8 karakter",
+      "confirmPassword": "Şifre Tekrar",
+      "confirmPasswordPlaceholder": "Yeni şifrenizi tekrar girin",
+      "submit": "Şifreyi Güncelle",
+      "submitting": "Güncelleniyor...",
+      "successMessage": "Şifreniz güncellendi. Yönlendiriliyorsunuz...",
+      "passwordMismatch": "Şifreler eşleşmiyor.",
+      "passwordTooShort": "Şifre en az 8 karakter olmalıdır."
+    },
+    "errors": {
+      "generic": "Bir hata oluştu. Lütfen tekrar deneyin."
+    }
+  },
+  "account": {
+    "title": "Hesabım",
+    "emailChange": {
+      "title": "E-posta Adresi",
+      "toggle": "E-posta Değiştir",
+      "cancel": "İptal",
+      "placeholder": "Yeni e-posta adresiniz",
+      "submit": "Değişikliği Gönder",
+      "submitting": "Gönderiliyor...",
+      "success": "Yeni e-posta adresinize doğrulama linki gönderildi. Onayladıktan sonra değişiklik geçerli olur.",
+      "sameEmail": "Bu zaten mevcut email adresiniz."
+    },
+    "profile": {
+      "title": "Profil",
+      "memberSince": "Üye olma tarihi"
+    },
+    "plan": {
+      "title": "Plan",
+      "free": "Ücretsiz Plan",
+      "premium": "Premium",
+      "freeUsage": "{count}/{limit} analiz kullanıldı (ömür boyu)",
+      "premiumUsage": "{count}/{limit} analiz kullanıldı bu ay",
+      "renewalDate": "Yenileme tarihi",
+      "upgrade": "Premium'a Geç"
+    },
+    "history": {
+      "title": "Analiz Geçmişi",
+      "locked": "Analiz geçmişinizi görmek için Premium'a geçin",
+      "empty": "Henüz analiz geçmişiniz yok",
+      "view": "Görüntüle",
+      "today": "Bugün",
+      "yesterday": "Dün"
+    },
+    "signOut": "Çıkış Yap",
+    "dangerZone": {
+      "title": "Tehlikeli Bölge",
+      "deleteAccount": "Hesabı Sil",
+      "deleteWarning": "Tüm verileriniz kalıcı olarak silinecek. Bu işlem geri alınamaz.",
+      "deleteConfirmPrompt": "Onaylamak için DELETE yazın",
+      "deleteConfirmPlaceholder": "DELETE",
+      "confirmButton": "Hesabı Kalıcı Olarak Sil",
+      "cancel": "İptal"
+    }
+  }
+}
