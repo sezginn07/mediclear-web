@@ -67,6 +67,25 @@ export function Hero() {
           {t('disclaimer')}
         </motion.p>
 
+        {/* Trust chips — security signals within the first viewport
+            (pattern: Ada Health's ISO badges next to the hero) */}
+        <motion.ul
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="mt-6 flex flex-wrap items-center justify-center gap-3"
+        >
+          {(t.raw('trustChips') as string[]).map((chip) => (
+            <li
+              key={chip}
+              className="flex items-center gap-1.5 rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-muted"
+            >
+              <span aria-hidden="true" className="text-status-normal">🔒</span>
+              {chip}
+            </li>
+          ))}
+        </motion.ul>
+
         {/* Trust badges: social proof counter + free-plan note */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}

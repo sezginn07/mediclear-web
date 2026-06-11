@@ -24,8 +24,9 @@
   },
   "hero": {
     "badge": "AI-powered health assistant",
-    "title": "Understand your medical reports in seconds",
-    "subtitle": "Upload your blood test, X-ray, pathology report and more. We translate complex medical terms into plain language anyone can understand.",
+    "title": "Understand your medical report. Stay calm.",
+    "subtitle": "The report in your hand can look frightening — most of the time it isn't. Upload your blood test, MRI or pathology report and we'll explain what it means in plain, calm language.",
+    "trustChips": ["256-bit encryption", "Data never stored", "GDPR & KVKK compliant"],
     "cta": "Analyze for Free",
     "ctaSecondary": "How it works?",
     "disclaimer": "Not medical advice. Always review your results with a physician.",

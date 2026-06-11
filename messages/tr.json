@@ -24,8 +24,9 @@
   },
   "hero": {
     "badge": "Yapay zeka destekli sağlık asistanı",
-    "title": "Tıbbi raporlarınızı saniyeler içinde anlayın",
-    "subtitle": "Kan tahlili, röntgen, patoloji ve daha fazlasını yükleyin. Karmaşık tıbbi terimleri herkesin anlayabileceği sade bir dile çevirelim.",
+    "title": "Tıbbi raporunuzu anlayın. Sakin olun.",
+    "subtitle": "Elinizdeki rapor korkutucu görünebilir — çoğu zaman değildir. Kan tahlili, MR, patoloji raporunuzu yükleyin; ne anlama geldiğini sade Türkçeyle, sakin bir dille anlatalım.",
+    "trustChips": ["256-bit şifreleme", "Veriler saklanmaz", "KVKK uyumlu"],
     "cta": "Ücretsiz Analiz Et",
     "ctaSecondary": "Nasıl çalışır?",
     "disclaimer": "Tıbbi tavsiye değildir. Sonuçlarınızı her zaman bir hekimle değerlendirin.",
