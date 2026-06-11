@@ -16,7 +16,7 @@ export default async function PricingPage({
   return (
     <>
       <Header />
-      <main>
+      <main id="main">
         <Pricing />
       </main>
       <Footer />

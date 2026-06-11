@@ -11,11 +11,54 @@ const inter = Inter({
   subsets: ['latin', 'latin-ext'],
 });
 
-export const metadata: Metadata = {
-  title: 'MediClear — Understand your medical reports',
-  description:
-    'Upload your medical report and get a plain-language explanation in seconds. Not medical advice.',
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? 'https://mediclear-web.vercel.app';
+
+const META: Record<string, { title: string; description: string }> = {
+  tr: {
+    title: 'MediClear — Tıbbi raporlarınızı anlaşılır dile çevirin',
+    description:
+      'Kan tahlili, MR, patoloji ve diğer tıbbi raporlarınızı yükleyin; saniyeler içinde sade Türkçe açıklama alın. Tıbbi tavsiye değildir.',
+  },
+  en: {
+    title: 'MediClear — Understand your medical reports',
+    description:
+      'Upload your medical report and get a plain-language explanation in seconds. Not medical advice.',
+  },
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const meta = META[locale] ?? META.tr;
+  return {
+    metadataBase: new URL(BASE_URL),
+    title: {
+      default: meta.title,
+      template: '%s | MediClear',
+    },
+    description: meta.description,
+    alternates: {
+      canonical: `/${locale}`,
+      languages: { tr: '/tr', en: '/en', 'x-default': '/tr' },
+    },
+    openGraph: {
+      title: meta.title,
+      description: meta.description,
+      url: `/${locale}`,
+      siteName: 'MediClear',
+      locale: locale === 'tr' ? 'tr_TR' : 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: meta.title,
+      description: meta.description,
+    },
+  };
+}
 
 // Pre-render both locales at build time.
 export function generateStaticParams() {

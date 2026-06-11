@@ -10,6 +10,22 @@ import { Pricing } from '@/components/landing/Pricing';
 import { Faq } from '@/components/landing/Faq';
 import { Footer } from '@/components/landing/Footer';
 
+const JSON_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: 'MediClear',
+  applicationCategory: 'HealthApplication',
+  operatingSystem: 'Web',
+  description:
+    'AI assistant that translates medical reports into plain language. Not medical advice.',
+  url: process.env.NEXT_PUBLIC_BASE_URL ?? 'https://mediclear-web.vercel.app',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+};
+
 export default async function LandingPage({
   params,
 }: {
@@ -20,8 +36,12 @@ export default async function LandingPage({
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }}
+      />
       <Header />
-      <main>
+      <main id="main">
         <Hero />
         <Features />
         <HowItWorks />
