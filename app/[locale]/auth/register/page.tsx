@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { AuthCard } from '@/components/auth/AuthCard';
 import { Link } from '@/i18n/navigation';
 import { createClient } from '@/lib/supabase/client';
+import { getBaseUrl } from '@/lib/baseUrl';
 
 function passwordStrength(pw: string): 'weak' | 'medium' | 'strong' {
   if (pw.length < 8) return 'weak';
@@ -52,7 +53,7 @@ export default function RegisterPage() {
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/confirm`,
+          emailRedirectTo: `${getBaseUrl()}/auth/confirm`,
           data: { kvkk_consent: true },
         },
       });

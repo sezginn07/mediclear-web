@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { AuthCard } from '@/components/auth/AuthCard';
 import { Link } from '@/i18n/navigation';
 import { createClient } from '@/lib/supabase/client';
+import { getBaseUrl } from '@/lib/baseUrl';
 
 const ATTEMPTS_KEY = 'mediclear_login_attempts';
 const LOCKOUT_KEY = 'mediclear_login_lockout_until';
@@ -115,7 +116,9 @@ export function LoginClient() {
     const supabase = createClient();
     await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: `${window.location.origin}/auth/callback` },
+      options: {
+        redirectTo: `${getBaseUrl()}/auth/callback?next=${encodeURIComponent(safeRedirect())}`,
+      },
     });
   }
 

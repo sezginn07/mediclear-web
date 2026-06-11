@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { AuthCard } from '@/components/auth/AuthCard';
 import { Link } from '@/i18n/navigation';
 import { createClient } from '@/lib/supabase/client';
+import { getBaseUrl } from '@/lib/baseUrl';
 
 export default function ForgotPasswordPage() {
   const t = useTranslations('auth.forgotPassword');
@@ -21,7 +22,7 @@ export default function ForgotPasswordPage() {
     try {
       const supabase = createClient();
       const { error: authError } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: `${window.location.origin}/auth/reset-password`,
+        redirectTo: `${getBaseUrl()}/auth/reset-password`,
       });
       if (authError) { setError(authError.message); return; }
       setDone(true);
