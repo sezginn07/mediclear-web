@@ -87,7 +87,7 @@ export function FileUploader({
               : 'border-border bg-white hover:border-slate-300',
           )}
         >
-          <span className="text-4xl">📋</span>
+          <span aria-hidden="true" className="text-4xl">📋</span>
           <span className="mt-4 font-semibold text-foreground">
             {t('title')}
           </span>

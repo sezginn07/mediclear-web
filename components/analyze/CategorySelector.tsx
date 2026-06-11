@@ -41,7 +41,7 @@ export function CategorySelector({
             )}
             aria-pressed={value === id}
           >
-            <span className="text-2xl">{ICONS[id]}</span>
+            <span aria-hidden="true" className="text-2xl">{ICONS[id]}</span>
             <span className="text-sm font-medium text-foreground">
               {t(id)}
             </span>
