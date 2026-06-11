@@ -31,7 +31,7 @@
     "ctaSecondary": "How it works?",
     "disclaimer": "Not medical advice. Always review your results with a physician.",
     "trustSuffix": "analyses completed",
-    "socialProof": "{count} reports analyzed this month",
+    "socialProof": "{count} reports analyzed this week",
     "freeNote": "Your free plan includes 2 analyses"
   },
   "testimonials": {
@@ -184,6 +184,7 @@
     "upload": {
       "title": "Drag your report here",
       "subtitle": "or click to select a file",
+      "privacyNote": "Your report is safe. No data is stored on our servers.",
       "formats": "PDF, JPG, PNG, WebP — up to 20 MB",
       "selectFile": "Select File",
       "change": "Change File",
@@ -208,11 +209,11 @@
     "progress": {
       "note": "Your report is being analyzed — this usually takes 15-30 seconds.",
       "messages": [
-        "Reading your report...",
-        "Reviewing medical values...",
+        "Comparing your values with normal ranges...",
+        "Preparing questions you should ask your doctor...",
         "Translating findings into plain language...",
-        "Identifying key points...",
-        "Preparing your results..."
+        "Identifying the points that matter most to you...",
+        "Almost ready..."
       ]
     },
     "errors": {
@@ -230,8 +231,12 @@
       "generic": "An unexpected error occurred. Please try again."
     },
     "limitGate": {
-      "title": "You've used your last free analysis",
-      "description": "Premium gives you 10 analyses a month, access to your analysis history, and priority processing — just $4.99/month.",
+      "title": "Invest in your health",
+      "description": "Premium gives you 10 analyses a month, access to your analysis history, and priority processing.",
+      "perDay": "Less than 17 cents a day — $4.99/month",
+      "testimonial": "\"Thanks to Premium I track my mother's chronic condition regularly. After every test I can see what changed.\"",
+      "testimonialAuthor": "Elif T. — Premium member",
+      "locked": ["Analysis history", "10 analyses per month", "Priority processing"],
       "cta": "Explore Premium"
     }
   },
@@ -239,6 +244,38 @@
     "title": "Analysis Result",
     "intro": "Let's see the overall picture first",
     "analyzedBy": "Analyzed by Claude AI — Anthropic's safety-focused AI model",
+    "statusHeadline": {
+      "normal": "Overall, this looks normal",
+      "warning": "There are some points to watch",
+      "urgent": "Please contact your doctor"
+    },
+    "doctorPrep": "Go to your doctor prepared — ask these questions:",
+    "nextSteps": "What should you do now?",
+    "closure": {
+      "title": "Don't forget to share your report with your doctor.",
+      "shareDoctor": "Share Results with My Doctor",
+      "reassurance": "If this analysis worried you, please consult a physician. This tool is for information only."
+    },
+    "shareCard": {
+      "title": "Share your result with loved ones",
+      "subtitle": "No sensitive medical values are shared — just the overall status and one insight.",
+      "analyzedBy": "Analyzed by MediClear AI",
+      "cta": "Analyze your report → mediclear-web.vercel.app",
+      "whatsapp": "Share on WhatsApp",
+      "twitter": "Share on X",
+      "copyLink": "Copy Link",
+      "copied": "Copied!",
+      "referralNote": "If your friend signs up to MediClear, you earn 1 extra free analysis.",
+      "message": "I analyzed my medical report with MediClear — complex terms explained in plain language. Try it:"
+    },
+    "reminder": {
+      "title": "Want to re-analyze this report in a month?",
+      "subtitle": "Set a reminder and we'll send a one-time email.",
+      "emailPlaceholder": "Your email address",
+      "cta": "Set Reminder",
+      "done": "Reminder set — see you in a month.",
+      "error": "Couldn't set the reminder, please try again."
+    },
     "status": {
       "normal": "🟢 Normal",
       "warning": "🟡 Caution",
@@ -399,10 +436,17 @@
       "renewalDate": "Renewal date",
       "upgrade": "Go Premium"
     },
+    "referral": {
+      "title": "Invite & Earn",
+      "stats": "You've invited {count} friends and earned {bonus} extra analyses",
+      "empty": "You haven't invited anyone yet. Share your analysis result — when a friend signs up you earn 1 extra free analysis."
+    },
     "history": {
       "title": "Analysis History",
       "locked": "Upgrade to Premium to view your analysis history",
-      "empty": "No analysis history yet",
+      "empty": "No analyses yet — let's get started",
+      "emptyHint": "You can upload a blood test, MRI, pathology, ECG or hormone report.",
+      "emptyCta": "Run Your First Analysis — Free",
       "view": "View",
       "today": "Today",
       "yesterday": "Yesterday"

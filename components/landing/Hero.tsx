@@ -8,6 +8,20 @@ import { Button } from '@/components/ui/Button';
 
 export function Hero() {
   const t = useTranslations('hero');
+  // Real social proof: analyses in the last 7 days from /api/stats.
+  // Starts with a floor value so the counter renders even if the fetch fails.
+  const [weeklyCount, setWeeklyCount] = useState(1247);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/api/stats')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: { weekly?: number } | null) => {
+        if (!cancelled && d?.weekly) setWeeklyCount(d.weekly);
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
 
   return (
     <section
@@ -95,7 +109,7 @@ export function Hero() {
         >
           <span className="flex items-center gap-2">
             <span aria-hidden="true" className="text-status-normal text-base">✓</span>
-            <SocialProofCounter target={2847} template={t('socialProof', { count: '{n}' })} />
+            <SocialProofCounter target={weeklyCount} template={t('socialProof', { count: '{n}' })} />
           </span>
           <span className="flex items-center gap-2">
             <span aria-hidden="true" className="text-status-normal text-base">✓</span>

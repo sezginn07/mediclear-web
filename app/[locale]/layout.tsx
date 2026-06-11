@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { Inter } from 'next/font/google';
+import { ReferralCapture } from '@/components/ReferralCapture';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
@@ -83,7 +85,12 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${inter.variable} h-full`}>
       <body className="min-h-full antialiased">
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <Suspense fallback={null}>
+            <ReferralCapture />
+          </Suspense>
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

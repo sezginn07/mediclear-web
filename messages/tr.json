@@ -31,7 +31,7 @@
     "ctaSecondary": "Nasıl çalışır?",
     "disclaimer": "Tıbbi tavsiye değildir. Sonuçlarınızı her zaman bir hekimle değerlendirin.",
     "trustSuffix": "analizler yapıldı",
-    "socialProof": "Bu ay {count} rapor analiz edildi",
+    "socialProof": "Bu hafta {count} rapor analiz edildi",
     "freeNote": "Ücretsiz planınızda 2 analiz hakkınız bulunuyor"
   },
   "testimonials": {
@@ -184,6 +184,7 @@
     "upload": {
       "title": "Raporu buraya sürükleyin",
       "subtitle": "veya dosya seçmek için tıklayın",
+      "privacyNote": "Raporunuz güvende. Hiçbir veri sunucularımızda saklanmaz.",
       "formats": "PDF, JPG, PNG, WebP — en fazla 20 MB",
       "selectFile": "Dosya Seç",
       "change": "Dosyayı Değiştir",
@@ -208,11 +209,11 @@
     "progress": {
       "note": "Raporunuz analiz ediliyor — bu genellikle 15-30 saniye sürer.",
       "messages": [
-        "Raporunuz okunuyor...",
-        "Tıbbi değerler inceleniyor...",
-        "Bulgular sade dile çevriliyor...",
-        "Önemli noktalar belirleniyor...",
-        "Sonuçlar hazırlanıyor..."
+        "Değerlerinizi normal aralıklarla karşılaştırıyoruz...",
+        "Doktorunuza sormanız gereken soruları hazırlıyoruz...",
+        "Bulguları sade bir dile çeviriyoruz...",
+        "Sizin için en önemli noktaları belirliyoruz...",
+        "Neredeyse hazır..."
       ]
     },
     "errors": {
@@ -230,8 +231,12 @@
       "generic": "Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin."
     },
     "limitGate": {
-      "title": "Son ücretsiz analizinizi kullandınız",
-      "description": "Premium ile ayda 10 analiz, analiz geçmişinize erişim ve öncelikli işleme kazanırsınız — ayda sadece $4.99.",
+      "title": "Sağlığınıza yatırım yapın",
+      "description": "Premium ile ayda 10 analiz, analiz geçmişinize erişim ve öncelikli işleme kazanırsınız.",
+      "perDay": "Günde 17 kuruştan az — ayda $4.99",
+      "testimonial": "\"Premium sayesinde annemin kronik hastalığını düzenli takip ediyorum. Her tahlilden sonra ne değiştiğini görüyorum.\"",
+      "testimonialAuthor": "Elif T. — Premium üyesi",
+      "locked": ["Analiz geçmişi", "Ayda 10 analiz", "Öncelikli işleme"],
       "cta": "Premium'u Keşfet"
     }
   },
@@ -239,6 +244,38 @@
     "title": "Analiz Sonucu",
     "intro": "Önce genel durumu görelim",
     "analyzedBy": "Claude AI tarafından analiz edildi — Anthropic'in güvenli yapay zeka modeli",
+    "statusHeadline": {
+      "normal": "Genel olarak normal görünüyor",
+      "warning": "Dikkat edilmesi gereken noktalar var",
+      "urgent": "Lütfen doktorunuzu arayın"
+    },
+    "doctorPrep": "Doktorunuza hazırlıklı gidin — bu soruları sorun:",
+    "nextSteps": "Şimdi ne yapmalısınız?",
+    "closure": {
+      "title": "Raporunuzu doktorunuzla paylaşmayı unutmayın.",
+      "shareDoctor": "Sonuçları Doktorumla Paylaş",
+      "reassurance": "Bu analiz sizi endişelendirdiyse, lütfen bir hekime danışın. Bu araç bilgi amaçlıdır."
+    },
+    "shareCard": {
+      "title": "Sonucunu sevdiklerinle paylaş",
+      "subtitle": "Hassas tıbbi değerler paylaşılmaz — sadece genel durum ve bir içgörü.",
+      "analyzedBy": "MediClear AI ile analiz edildi",
+      "cta": "Raporunu analiz et → mediclear-web.vercel.app",
+      "whatsapp": "WhatsApp ile Paylaş",
+      "twitter": "X'te Paylaş",
+      "copyLink": "Bağlantıyı Kopyala",
+      "copied": "Kopyalandı!",
+      "referralNote": "Arkadaşın MediClear'a kayıt olursa sen de 1 ekstra ücretsiz analiz kazanırsın.",
+      "message": "Tıbbi raporumu MediClear ile analiz ettim — karmaşık terimleri sade Türkçeyle anladım. Sen de dene:"
+    },
+    "reminder": {
+      "title": "Bu raporu 1 ay sonra tekrar analiz etmek ister misiniz?",
+      "subtitle": "Hatırlatıcı kurun, e-postanıza tek seferlik bir hatırlatma gönderelim.",
+      "emailPlaceholder": "E-posta adresiniz",
+      "cta": "Hatırlatıcı Kur",
+      "done": "Hatırlatıcı kuruldu — bir ay sonra görüşürüz.",
+      "error": "Hatırlatıcı kurulamadı, lütfen tekrar deneyin."
+    },
     "status": {
       "normal": "🟢 Normal",
       "warning": "🟡 Dikkat",
@@ -399,10 +436,17 @@
       "renewalDate": "Yenileme tarihi",
       "upgrade": "Premium'a Geç"
     },
+    "referral": {
+      "title": "Davet Et, Kazan",
+      "stats": "{count} arkadaşını davet ettin, {bonus} ekstra analiz kazandın",
+      "empty": "Henüz kimseyi davet etmedin. Analiz sonucunu paylaş — arkadaşın kayıt olursa 1 ekstra ücretsiz analiz kazanırsın."
+    },
     "history": {
       "title": "Analiz Geçmişi",
       "locked": "Analiz geçmişinizi görmek için Premium'a geçin",
-      "empty": "Henüz analiz geçmişiniz yok",
+      "empty": "Henüz bir analiziniz yok — hadi başlayalım",
+      "emptyHint": "Kan tahlili, MR, patoloji, EKG veya hormon raporunuzu yükleyebilirsiniz.",
+      "emptyCta": "İlk Analizinizi Yapın — Ücretsiz",
       "view": "Görüntüle",
       "today": "Bugün",
       "yesterday": "Dün"

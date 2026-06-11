@@ -217,6 +217,24 @@ export function AccountClient({ profile, analyses, userEmail }: Props) {
         )}
       </Card>
 
+      {/* Referral loop */}
+      <Card className="p-6">
+        <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">{t('referral.title')}</h2>
+        {(() => {
+          // Columns exist after the referral migration; default to 0 on older DBs.
+          const p = profile as (Profile & { referral_count?: number; bonus_analyses?: number }) | null;
+          const refCount = p?.referral_count ?? 0;
+          const bonus = p?.bonus_analyses ?? 0;
+          return refCount > 0 ? (
+            <p className="mt-3 text-sm text-foreground">
+              🎁 {t('referral.stats', { count: refCount, bonus })}
+            </p>
+          ) : (
+            <p className="mt-3 text-sm text-muted">{t('referral.empty')}</p>
+          );
+        })()}
+      </Card>
+
       {/* Analysis history */}
       <Card className="p-6">
         <h2 className="text-sm font-semibold uppercase tracking-wide text-muted">{t('history.title')}</h2>
@@ -229,7 +247,17 @@ export function AccountClient({ profile, analyses, userEmail }: Props) {
             </Link>
           </div>
         ) : analyses.length === 0 ? (
-          <p className="mt-4 text-sm text-muted">{t('history.empty')}</p>
+          <div className="mt-4 flex flex-col items-center gap-3 py-6 text-center">
+            <span aria-hidden="true" className="text-4xl">🌱</span>
+            <p className="text-sm font-medium text-foreground">{t('history.empty')}</p>
+            <p className="max-w-xs text-xs text-muted">{t('history.emptyHint')}</p>
+            <Link
+              href="/analyze"
+              className="mt-1 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-blue-700"
+            >
+              {t('history.emptyCta')}
+            </Link>
+          </div>
         ) : (
           <div className="mt-4 space-y-6">
             {grouped.map(({ label, items }) => (

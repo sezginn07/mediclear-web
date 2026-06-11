@@ -11,6 +11,7 @@
 const COUNT_KEY = 'mediclear_web_analysis_count';
 const PREMIUM_KEY = 'mediclear_web_premium';
 const PERIOD_KEY = 'mediclear_web_period'; // 'YYYY-MM' for premium monthly reset
+const BONUS_KEY = 'mediclear_web_bonus'; // extra analyses earned via referrals
 
 export const FREE_LIMIT = 2;
 export const PREMIUM_LIMIT = 10;
@@ -61,8 +62,20 @@ export function getCount(): number {
   return Number.isFinite(n) && n >= 0 ? n : 0;
 }
 
+// Extra analyses earned through referrals (guest-mode, localStorage).
+export function getBonus(): number {
+  if (!isBrowser()) return 0;
+  const n = parseInt(window.localStorage.getItem(BONUS_KEY) ?? '0', 10);
+  return Number.isFinite(n) && n > 0 ? n : 0;
+}
+
+export function addBonus(n: number): void {
+  if (!isBrowser()) return;
+  window.localStorage.setItem(BONUS_KEY, String(getBonus() + n));
+}
+
 export function getLimit(): number {
-  return isPremium() ? PREMIUM_LIMIT : FREE_LIMIT;
+  return isPremium() ? PREMIUM_LIMIT : FREE_LIMIT + getBonus();
 }
 
 export function getRemaining(): number {

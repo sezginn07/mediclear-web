@@ -26,6 +26,40 @@ DO $$ BEGIN
 EXCEPTION WHEN duplicate_column THEN NULL;
 END $$;
 
+-- Referral loop columns (viral growth):
+--   referred_by     — the user id from the ?ref= link the new user signed up with
+--   referral_count  — how many people this user has referred (shown in account)
+--   bonus_analyses  — extra free analyses earned via referrals
+DO $$ BEGIN
+  ALTER TABLE profiles ADD COLUMN IF NOT EXISTS referred_by    UUID;
+  ALTER TABLE profiles ADD COLUMN IF NOT EXISTS referral_count INTEGER DEFAULT 0 NOT NULL;
+  ALTER TABLE profiles ADD COLUMN IF NOT EXISTS bonus_analyses INTEGER DEFAULT 0 NOT NULL;
+EXCEPTION WHEN duplicate_column THEN NULL;
+END $$;
+
+-- ── Re-analysis reminders ──────────────────────────────────────────────────
+-- Data model is ready; actual email delivery is a TODO (needs an email
+-- service — Resend/Postmark — plus a daily cron that selects due rows).
+CREATE TABLE IF NOT EXISTS public.reminders (
+  id         UUID        PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id    UUID        REFERENCES public.profiles(id) ON DELETE CASCADE,
+  email      TEXT        NOT NULL,
+  category   TEXT,
+  remind_at  DATE        NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  sent       BOOLEAN     DEFAULT FALSE NOT NULL
+);
+
+ALTER TABLE public.reminders ENABLE ROW LEVEL SECURITY;
+
+DROP POLICY IF EXISTS "Users can read own reminders" ON public.reminders;
+CREATE POLICY "Users can read own reminders"
+  ON public.reminders FOR SELECT
+  USING (auth.uid() = user_id);
+
+CREATE INDEX IF NOT EXISTS reminders_due_idx
+  ON public.reminders (remind_at) WHERE sent = FALSE;
+
 -- ── Analyses ──────────────────────────────────────────────────────────────
 
 CREATE TABLE IF NOT EXISTS public.analyses (
