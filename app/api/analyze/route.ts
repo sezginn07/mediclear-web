@@ -11,6 +11,7 @@ import { analyzeReport, AnalyzeReportError } from '@/lib/analysis';
 import { createClient } from '@/lib/supabase/server';
 import { FREE_LIMIT, PREMIUM_LIMIT } from '@/lib/freemium';
 import { getFreemiumStatus } from '@/lib/freemium.server';
+import { checkRateLimit, getClientIp, pruneExpired } from '@/lib/rateLimit';
 import type { Profile, ProfileUpdate, AnalysisInsert } from '@/lib/supabase/types';
 
 export const runtime = 'nodejs';
@@ -20,7 +21,23 @@ function fail(code: string, status: number) {
   return NextResponse.json({ code }, { status });
 }
 
+// Strip control characters and cap length before the name touches the DB or UI.
+function sanitizeFileName(name: string): string {
+  // eslint-disable-next-line no-control-regex
+  return name.replace(/[\x00-\x1f<>]/g, '').slice(0, 200) || 'report';
+}
+
 export async function POST(request: Request) {
+  // ── Rate limit: max 10 analyses per IP per hour ────────────────────────
+  pruneExpired();
+  const { allowed, retryAfterSeconds } = checkRateLimit(getClientIp(request));
+  if (!allowed) {
+    return NextResponse.json(
+      { code: 'rate_limit' },
+      { status: 429, headers: { 'Retry-After': String(retryAfterSeconds) } },
+    );
+  }
+
   let form: FormData;
   try {
     form = await request.formData();
@@ -121,7 +138,7 @@ export async function POST(request: Request) {
     // Insert analysis record.
     const insertRow: AnalysisInsert = {
       user_id: user.id,
-      report_name: file.name,
+      report_name: sanitizeFileName(file.name),
       category,
       language: lang,
       status: result.status,

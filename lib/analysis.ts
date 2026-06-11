@@ -141,12 +141,14 @@ export async function analyzeReport({
   category,
   lang,
 }: AnalyzeArgs): Promise<AnalysisResult> {
-  const proxyUrl = process.env.NEXT_PUBLIC_PROXY_URL;
-  const appToken = process.env.NEXT_PUBLIC_APP_TOKEN;
+  // Server-only env vars (no NEXT_PUBLIC_ — only this server route needs them).
+  // The NEXT_PUBLIC_ variants are read as a fallback for older deployments.
+  const proxyUrl = process.env.PROXY_URL ?? process.env.NEXT_PUBLIC_PROXY_URL;
+  const appToken = process.env.APP_TOKEN ?? process.env.NEXT_PUBLIC_APP_TOKEN;
 
   if (!proxyUrl || !appToken) {
     throw new AnalyzeReportError(
-      'NEXT_PUBLIC_PROXY_URL / NEXT_PUBLIC_APP_TOKEN are not configured.',
+      'PROXY_URL / APP_TOKEN are not configured.',
       'config',
     );
   }
