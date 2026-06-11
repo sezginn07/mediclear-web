@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import { Link } from '@/i18n/navigation';
@@ -66,28 +67,54 @@ export function Hero() {
           {t('disclaimer')}
         </motion.p>
 
-        {/* Trust badge */}
+        {/* Trust badges: social proof counter + free-plan note */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-10 flex items-center justify-center gap-2 text-sm text-muted"
+          className="mt-10 flex flex-col items-center justify-center gap-2 text-sm text-muted sm:flex-row sm:gap-6"
         >
-          <span className="text-status-normal text-base">✓</span>
-          <TrustCounter target={10000} suffix={t('trustSuffix')} />
+          <span className="flex items-center gap-2">
+            <span aria-hidden="true" className="text-status-normal text-base">✓</span>
+            <SocialProofCounter target={2847} template={t('socialProof', { count: '{n}' })} />
+          </span>
+          <span className="flex items-center gap-2">
+            <span aria-hidden="true" className="text-status-normal text-base">✓</span>
+            {t('freeNote')}
+          </span>
         </motion.div>
       </div>
     </section>
   );
 }
 
-function TrustCounter({ target, suffix }: { target: number; suffix: string }) {
+// Counts up from 0 to the target over ~1.2s, easing out. The final number is
+// in the aria-label so screen readers never hear intermediate values.
+function SocialProofCounter({ target, template }: { target: number; template: string }) {
+  const [value, setValue] = useState(0);
+  const startRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    let raf: number;
+    function tick(ts: number) {
+      if (startRef.current === null) startRef.current = ts;
+      const progress = Math.min(1, (ts - startRef.current) / 1200);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.round(target * eased));
+      if (progress < 1) raf = requestAnimationFrame(tick);
+    }
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [target]);
+
+  const [before, after] = template.split('{n}');
   return (
-    <span>
-      <strong className="font-semibold text-foreground">
-        {target.toLocaleString()}+
-      </strong>{' '}
-      {suffix}
+    <span aria-label={template.replace('{n}', target.toLocaleString())}>
+      {before}
+      <strong className="font-semibold text-foreground tabular-nums">
+        {value.toLocaleString()}
+      </strong>
+      {after}
     </span>
   );
 }

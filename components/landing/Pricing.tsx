@@ -59,6 +59,9 @@ export function Pricing() {
             {t('title')}
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-muted">{t('subtitle')}</p>
+          <p className="mx-auto mt-2 max-w-2xl text-sm font-medium text-primary">
+            {t('anchor')}
+          </p>
         </div>
 
         {alert && (

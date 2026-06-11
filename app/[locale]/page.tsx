@@ -5,6 +5,7 @@ import { Header } from '@/components/ui/Header';
 import { Hero } from '@/components/landing/Hero';
 import { Features } from '@/components/landing/Features';
 import { HowItWorks } from '@/components/landing/HowItWorks';
+import { Testimonials } from '@/components/landing/Testimonials';
 import { Pricing } from '@/components/landing/Pricing';
 import { Faq } from '@/components/landing/Faq';
 import { Footer } from '@/components/landing/Footer';
@@ -24,6 +25,7 @@ export default async function LandingPage({
         <Hero />
         <Features />
         <HowItWorks />
+        <Testimonials />
         <Pricing />
         <Faq />
       </main>
