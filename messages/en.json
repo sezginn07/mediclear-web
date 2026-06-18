@@ -26,12 +26,12 @@
     "badge": "AI-powered health assistant",
     "title": "Understand your medical report. Stay calm.",
     "subtitle": "The report in your hand can look frightening — most of the time it isn't. Upload your blood test, MRI or pathology report and we'll explain what it means in plain, calm language.",
-    "trustChips": ["256-bit encryption", "Data never stored", "GDPR & KVKK compliant"],
+    "trustChips": ["256-bit encryption", "Your report is never stored", "GDPR & KVKK compliant"],
     "cta": "Analyze for Free",
     "ctaSecondary": "How it works?",
     "disclaimer": "Not medical advice. Always review your results with a physician.",
     "trustSuffix": "analyses completed",
-    "socialProof": "{count} reports analyzed this week",
+    "socialProof": "{count} analyses completed to date",
     "freeNote": "Your free plan includes 2 analyses"
   },
   "features": {
@@ -48,7 +48,7 @@
       },
       "private": {
         "title": "Private & Secure",
-        "description": "Your reports are processed for analysis, not stored on our servers. Your data is yours."
+        "description": "Your report is not stored. Analysis results are securely kept in your account."
       }
     }
   },
@@ -82,7 +82,8 @@
         "2 free analyses",
         "All report categories",
         "Plain-language explanations",
-        "Suggested questions for your doctor"
+        "Suggested questions for your doctor",
+        "Save and share as PDF"
       ],
       "cta": "Start for Free"
     },
@@ -91,12 +92,12 @@
       "price": "$4.99",
       "description": "For regular follow-ups",
       "badge": "Most Popular",
+      "comingSoon": "Coming soon",
       "features": [
         "10 analyses per month",
         "All report categories",
-        "Priority processing",
-        "Save and share as PDF",
-        "Unlimited history access"
+        "Plain-language explanations",
+        "Last 7 days of analysis history"
       ],
       "cta": "Go Premium"
     }
@@ -114,7 +115,7 @@
       },
       {
         "question": "Is my data safe?",
-        "answer": "Your reports are processed only for analysis and are not permanently stored on our servers. Once the analysis is complete, your file is not retained."
+        "answer": "Your report (the file) is never stored — it is only processed for analysis. If you have an account, your analysis results are securely kept in your account; deleting your account permanently deletes all of your data."
       },
       {
         "question": "Which file formats can I upload?",
@@ -130,7 +131,7 @@
       },
       {
         "question": "What does Premium offer?",
-        "answer": "Premium gives you 10 analyses per month, priority processing, PDF saving and sharing, and unlimited history access. $4.99 per month."
+        "answer": "Premium gives you 10 analyses per month and access to your last 7 days of analysis history. $4.99 per month."
       },
       {
         "question": "Can I cancel my subscription?",
@@ -163,7 +164,7 @@
     "upload": {
       "title": "Drag your report here",
       "subtitle": "or click to select a file",
-      "privacyNote": "Your report is safe. No data is stored on our servers.",
+      "privacyNote": "Your report is not stored. Analysis results are securely kept in your account.",
       "formats": "PDF, JPG, PNG, WebP — up to 20 MB",
       "selectFile": "Select File",
       "change": "Change File",
@@ -183,7 +184,7 @@
       "title": "How does this analysis work?",
       "how": "Your report is reviewed by AI guided to translate medical documents into plain language. It extracts key findings, questions you can ask your doctor, and practical recommendations.",
       "model": "Analyzed by Claude AI — Anthropic's safety-focused AI model.",
-      "privacy": "Your report is transmitted over an encrypted connection (HTTPS) and is not stored on our servers after it is processed for analysis."
+      "privacy": "Your report is transmitted over an encrypted connection (HTTPS) and the file is not retained after analysis. If you have an account, your analysis results are securely kept in your account."
     },
     "progress": {
       "note": "Your report is being analyzed — this usually takes 15-30 seconds.",
@@ -211,9 +212,9 @@
     },
     "limitGate": {
       "title": "Invest in your health",
-      "description": "Premium gives you 10 analyses a month, access to your analysis history, and priority processing.",
+      "description": "Premium gives you 10 analyses a month and access to your last 7 days of analysis history.",
       "perDay": "Less than 17 cents a day — $4.99/month",
-      "locked": ["Analysis history", "10 analyses per month", "Priority processing"],
+      "locked": ["10 analyses per month", "Last 7 days of history"],
       "cta": "Explore Premium"
     }
   },
@@ -245,18 +246,10 @@
       "referralNote": "If your friend signs up to MediClear, you earn 1 extra free analysis.",
       "message": "I analyzed my medical report with MediClear — complex terms explained in plain language. Try it:"
     },
-    "reminder": {
-      "title": "Want to re-analyze this report in a month?",
-      "subtitle": "Set a reminder and we'll send a one-time email.",
-      "emailPlaceholder": "Your email address",
-      "cta": "Set Reminder",
-      "done": "Reminder set — see you in a month.",
-      "error": "Couldn't set the reminder, please try again."
-    },
     "status": {
-      "normal": "🟢 Normal",
-      "warning": "🟡 Caution",
-      "urgent": "🔴 Urgent"
+      "normal": "Normal",
+      "warning": "Caution",
+      "urgent": "Urgent"
     },
     "summary": "Summary",
     "urgency": "Urgency",
@@ -307,7 +300,11 @@
   "stripe": {
     "redirecting": "Redirecting you to checkout...",
     "success": "Welcome to Premium! You can now run 10 analyses per month.",
-    "spoofNote": "Note: In this demo, Premium status is stored in your browser."
+    "spoofNote": "Note: In this demo, Premium status is stored in your browser.",
+    "checkoutFailed": "Could not start checkout. Please try again.",
+    "comingSoon": "Payment system coming soon.",
+    "networkError": "Network error. Check your internet connection.",
+    "preparing": "Getting ready..."
   },
   "auth": {
     "login": {
@@ -326,7 +323,8 @@
       "orContinueWith": "or continue with",
       "continueWithGoogle": "Continue with Google",
       "emailNotConfirmed": "Please confirm your email address. Check your inbox.",
-      "invalidCredentials": "Invalid email or password."
+      "invalidCredentials": "Invalid email or password.",
+      "lockout": "Too many failed attempts. Wait {seconds} seconds."
     },
     "register": {
       "title": "Create Account",
@@ -399,7 +397,8 @@
       "submit": "Send Confirmation",
       "submitting": "Sending...",
       "success": "Confirmation link sent to your new email. Change will take effect after confirmation.",
-      "sameEmail": "This is already your current email."
+      "sameEmail": "This is already your current email.",
+      "invalid": "Enter a valid email address."
     },
     "profile": {
       "title": "Profile",
@@ -437,7 +436,8 @@
       "deleteConfirmPrompt": "Type DELETE to confirm",
       "deleteConfirmPlaceholder": "DELETE",
       "confirmButton": "Permanently Delete Account",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "deleteFailed": "Could not delete account. Please try again."
     }
   }
 }

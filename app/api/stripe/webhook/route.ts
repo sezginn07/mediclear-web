@@ -25,11 +25,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'invalid_signature' }, { status: 400 });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const admin = createAdminClient() as any;
+  const admin = createAdminClient();
 
   switch (event.type) {
     case 'checkout.session.completed': {
+      // FRAGILITY: we match the profile by the Stripe checkout email rather than
+      // a user id. If a user pays with an email different from their MediClear
+      // account email (or later changes their account email), premium won't be
+      // applied to the right profile. Hardening: pass the authenticated user id
+      // as `client_reference_id` when creating the Checkout Session, then match
+      // on that here instead of email.
       const session = event.data.object as Stripe.Checkout.Session;
       const customerEmail = session.customer_details?.email ?? session.customer_email;
       const customerId = typeof session.customer === 'string' ? session.customer : null;
@@ -74,6 +79,32 @@ export async function POST(request: Request) {
             .update({ is_premium: false, premium_expires_at: new Date().toISOString() })
             .eq('stripe_customer_id', customerId);
         }
+      }
+      break;
+    }
+
+    case 'invoice.payment_succeeded': {
+      // Subscription renewal: extend premium by 30 days from whichever is
+      // later — now, or the current expiry. (Setting NOW()+30 outright would
+      // shorten the entitlement when a renewal lands early.)
+      const invoice = event.data.object as Stripe.Invoice;
+      const customerId = typeof invoice.customer === 'string' ? invoice.customer : null;
+      if (customerId) {
+        const { data: profile } = await admin
+          .from('profiles')
+          .select('premium_expires_at')
+          .eq('stripe_customer_id', customerId)
+          .single();
+
+        const current = profile?.premium_expires_at ? new Date(profile.premium_expires_at) : null;
+        const base = current && current > new Date() ? current : new Date();
+        const extended = new Date(base);
+        extended.setDate(extended.getDate() + 30);
+
+        await admin
+          .from('profiles')
+          .update({ is_premium: true, premium_expires_at: extended.toISOString() })
+          .eq('stripe_customer_id', customerId);
       }
       break;
     }

@@ -37,28 +37,80 @@ DO $$ BEGIN
 EXCEPTION WHEN duplicate_column THEN NULL;
 END $$;
 
--- ── Re-analysis reminders ──────────────────────────────────────────────────
--- Data model is ready; actual email delivery is a TODO (needs an email
--- service — Resend/Postmark — plus a daily cron that selects due rows).
-CREATE TABLE IF NOT EXISTS public.reminders (
-  id         UUID        PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id    UUID        REFERENCES public.profiles(id) ON DELETE CASCADE,
-  email      TEXT        NOT NULL,
-  category   TEXT,
-  remind_at  DATE        NOT NULL,
-  created_at TIMESTAMPTZ DEFAULT NOW(),
-  sent       BOOLEAN     DEFAULT FALSE NOT NULL
+-- ── Server-side rate limiting (per IP hash, fixed 1-hour window) ──────────
+-- Replaces the in-memory limiter, which reset on every serverless cold start.
+CREATE TABLE IF NOT EXISTS public.rate_limits (
+  ip_hash      TEXT        PRIMARY KEY,
+  count        INTEGER     DEFAULT 0 NOT NULL,
+  window_start TIMESTAMPTZ DEFAULT NOW() NOT NULL
 );
 
-ALTER TABLE public.reminders ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.rate_limits ENABLE ROW LEVEL SECURITY;
+-- No policies: only the service-role client (and SECURITY DEFINER fns) touch it.
 
-DROP POLICY IF EXISTS "Users can read own reminders" ON public.reminders;
-CREATE POLICY "Users can read own reminders"
-  ON public.reminders FOR SELECT
-  USING (auth.uid() = user_id);
+-- Atomically count a request and report whether it is within the limit.
+CREATE OR REPLACE FUNCTION public.check_rate_limit(
+  p_ip_hash TEXT,
+  p_max INT DEFAULT 10,
+  p_window_seconds INT DEFAULT 3600
+)
+RETURNS BOOLEAN AS $$
+DECLARE
+  current_count INT;
+BEGIN
+  INSERT INTO public.rate_limits AS rl (ip_hash, count, window_start)
+  VALUES (p_ip_hash, 1, NOW())
+  ON CONFLICT (ip_hash) DO UPDATE SET
+    count = CASE
+      WHEN rl.window_start < NOW() - make_interval(secs => p_window_seconds) THEN 1
+      ELSE rl.count + 1
+    END,
+    window_start = CASE
+      WHEN rl.window_start < NOW() - make_interval(secs => p_window_seconds) THEN NOW()
+      ELSE rl.window_start
+    END
+  RETURNING count INTO current_count;
+  RETURN current_count <= p_max;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
 
-CREATE INDEX IF NOT EXISTS reminders_due_idx
-  ON public.reminders (remind_at) WHERE sent = FALSE;
+-- Atomically consume one analysis credit. Returns FALSE when the user is at
+-- their limit (the UPDATE matches no row), so check-then-increment races are
+-- impossible. p_limit is the caller-computed effective limit
+-- (premium: 10/month; free: 2 lifetime + bonus_analyses).
+CREATE OR REPLACE FUNCTION public.increment_analysis_count(
+  p_user_id UUID,
+  p_limit INT
+)
+RETURNS BOOLEAN AS $$
+DECLARE
+  updated INT;
+BEGIN
+  UPDATE public.profiles
+  SET analysis_count_monthly = analysis_count_monthly + 1
+  WHERE id = p_user_id
+    AND analysis_count_monthly < p_limit
+    -- Callers may only consume their own credits (service role bypasses).
+    AND (auth.uid() IS NULL OR auth.uid() = p_user_id)
+  RETURNING 1 INTO updated;
+  RETURN updated IS NOT NULL;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Refund one credit when the AI call fails after the credit was consumed.
+-- Service-role only: if users could call this they could refund themselves
+-- unlimited credits.
+CREATE OR REPLACE FUNCTION public.decrement_analysis_count(p_user_id UUID)
+RETURNS VOID AS $$
+BEGIN
+  IF auth.uid() IS NOT NULL THEN
+    RAISE EXCEPTION 'decrement_analysis_count is service-role only';
+  END IF;
+  UPDATE public.profiles
+  SET analysis_count_monthly = GREATEST(analysis_count_monthly - 1, 0)
+  WHERE id = p_user_id;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
 
 -- ── Analyses ──────────────────────────────────────────────────────────────
 

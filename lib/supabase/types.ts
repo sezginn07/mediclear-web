@@ -1,5 +1,6 @@
-// Supabase database type definitions.
-// Re-generate with: npx supabase gen types typescript --project-id <id> > lib/supabase/types.ts
+// Supabase database type definitions — kept in sync with lib/supabase/schema.sql.
+// Prefer re-generating from the live project when possible:
+//   npx supabase gen types typescript --project-id <id> > lib/supabase/types.ts
 
 export interface Database {
   public: {
@@ -16,6 +17,9 @@ export interface Database {
           analysis_reset_date: string;
           email_confirmed: boolean;
           kvkk_consent: boolean;
+          referred_by: string | null;
+          referral_count: number;
+          bonus_analyses: number;
         };
         Insert: {
           id: string;
@@ -28,6 +32,9 @@ export interface Database {
           analysis_reset_date?: string;
           email_confirmed?: boolean;
           kvkk_consent?: boolean;
+          referred_by?: string | null;
+          referral_count?: number;
+          bonus_analyses?: number;
         };
         Update: {
           id?: string;
@@ -40,7 +47,11 @@ export interface Database {
           analysis_reset_date?: string;
           email_confirmed?: boolean;
           kvkk_consent?: boolean;
+          referred_by?: string | null;
+          referral_count?: number;
+          bonus_analyses?: number;
         };
+        Relationships: [];
       };
       analyses: {
         Row: {
@@ -91,11 +102,44 @@ export interface Database {
           urgency?: string | null;
           disclaimer?: string | null;
         };
+        Relationships: [];
+      };
+      rate_limits: {
+        Row: {
+          ip_hash: string;
+          count: number;
+          window_start: string;
+        };
+        Insert: {
+          ip_hash: string;
+          count?: number;
+          window_start?: string;
+        };
+        Update: {
+          ip_hash?: string;
+          count?: number;
+          window_start?: string;
+        };
+        Relationships: [];
       };
     };
     Views: Record<string, never>;
-    Functions: Record<string, never>;
+    Functions: {
+      check_rate_limit: {
+        Args: { p_ip_hash: string; p_max?: number; p_window_seconds?: number };
+        Returns: boolean;
+      };
+      increment_analysis_count: {
+        Args: { p_user_id: string; p_limit: number };
+        Returns: boolean;
+      };
+      decrement_analysis_count: {
+        Args: { p_user_id: string };
+        Returns: undefined;
+      };
+    };
     Enums: Record<string, never>;
+    CompositeTypes: Record<string, never>;
   };
 }
 

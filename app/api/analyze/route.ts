@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { NextResponse } from 'next/server';
 import {
   ACCEPTED_MIME_TYPES,
@@ -9,10 +10,10 @@ import {
 } from '@/lib/types';
 import { analyzeReport, AnalyzeReportError } from '@/lib/analysis';
 import { createClient } from '@/lib/supabase/server';
+import { createAdminClient } from '@/lib/supabase/admin';
 import { FREE_LIMIT, PREMIUM_LIMIT } from '@/lib/freemium';
-import { getFreemiumStatus } from '@/lib/freemium.server';
 import { checkRateLimit, getClientIp, pruneExpired } from '@/lib/rateLimit';
-import type { Profile, ProfileUpdate, AnalysisInsert } from '@/lib/supabase/types';
+import type { AnalysisInsert } from '@/lib/supabase/types';
 
 export const runtime = 'nodejs';
 export const maxDuration = 60;
@@ -27,14 +28,33 @@ function sanitizeFileName(name: string): string {
   return name.replace(/[\x00-\x1f<>]/g, '').slice(0, 200) || 'report';
 }
 
+// DB-backed rate limit (atomic, global across serverless instances). Falls
+// back to the in-memory limiter when the service-role key isn't configured,
+// so local dev without secrets still has *some* protection.
+async function isRateLimited(request: Request): Promise<boolean> {
+  const ip = getClientIp(request);
+  try {
+    const admin = createAdminClient();
+    const ipHash = createHash('sha256').update(ip).digest('hex');
+    const { data: allowed, error } = await admin.rpc('check_rate_limit', {
+      p_ip_hash: ipHash,
+      p_max: 10,
+      p_window_seconds: 3600,
+    });
+    if (error) throw error;
+    return allowed !== true;
+  } catch {
+    pruneExpired();
+    return !checkRateLimit(ip).allowed;
+  }
+}
+
 export async function POST(request: Request) {
-  // ── Rate limit: max 10 analyses per IP per hour ────────────────────────
-  pruneExpired();
-  const { allowed, retryAfterSeconds } = checkRateLimit(getClientIp(request));
-  if (!allowed) {
+  // ── Rate limit: max 10 analyses per IP per hour (DB-backed) ───────────
+  if (await isRateLimited(request)) {
     return NextResponse.json(
       { code: 'rate_limit' },
-      { status: 429, headers: { 'Retry-After': String(retryAfterSeconds) } },
+      { status: 429, headers: { 'Retry-After': '3600' } },
     );
   }
 
@@ -58,15 +78,16 @@ export async function POST(request: Request) {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
+  let creditConsumed = false;
+
   if (user) {
-    // Require email confirmation for logged-in users.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: profileRaw } = await (supabase as any)
+    const { data: profile } = await supabase
       .from('profiles')
-      .select('email_confirmed, is_premium, analysis_count_monthly, analysis_reset_date')
+      .select(
+        'email_confirmed, is_premium, premium_expires_at, analysis_count_monthly, analysis_reset_date, bonus_analyses',
+      )
       .eq('id', user.id)
-      .single() as { data: Pick<Profile, 'email_confirmed' | 'is_premium' | 'analysis_count_monthly' | 'analysis_reset_date'> | null; error: unknown };
-    const profile = profileRaw;
+      .single();
 
     // Email confirmed if any of: our DB flag, Supabase native field, or OAuth provider.
     const isEmailConfirmed =
@@ -83,13 +104,45 @@ export async function POST(request: Request) {
       );
     }
 
-    // Check limits from database.
-    const status = await getFreemiumStatus(user.id);
-    if (status.hasReachedLimit) {
-      return fail('limitReached', 403);
+    // Server-side premium: the DB flag counts only while not expired.
+    // (Never trust the client's localStorage premium flag.)
+    const expiresAt = profile?.premium_expires_at;
+    const isPremium =
+      (profile?.is_premium ?? false) &&
+      (!expiresAt || new Date(expiresAt) > new Date());
+
+    // Monthly reset for premium users, applied before consuming a credit.
+    if (isPremium && profile?.analysis_reset_date) {
+      const firstOfMonth = new Date();
+      firstOfMonth.setDate(1);
+      firstOfMonth.setHours(0, 0, 0, 0);
+      if (new Date(profile.analysis_reset_date) < firstOfMonth) {
+        await supabase
+          .from('profiles')
+          .update({
+            analysis_count_monthly: 0,
+            analysis_reset_date: new Date().toISOString().split('T')[0],
+          })
+          .eq('id', user.id);
+      }
     }
+
+    // Effective limit: premium 10/month; free 2 lifetime + referral bonuses.
+    const effectiveLimit = isPremium
+      ? PREMIUM_LIMIT
+      : FREE_LIMIT + (profile?.bonus_analyses ?? 0);
+
+    // Atomic consume-one-credit. Returns false when the user is at the limit,
+    // so two parallel requests can never both pass the check.
+    const { data: allowed, error: rpcError } = await supabase.rpc(
+      'increment_analysis_count',
+      { p_user_id: user.id, p_limit: effectiveLimit },
+    );
+    if (rpcError) return fail('server', 500);
+    if (allowed !== true) return fail('limitReached', 403);
+    creditConsumed = true;
   }
-  // Guest users: limit enforcement is client-side (localStorage).
+  // Guest users: no account to meter — the IP rate limit above is the gate.
 
   const base64Data = Buffer.from(await file.arrayBuffer()).toString('base64');
 
@@ -102,6 +155,15 @@ export async function POST(request: Request) {
       lang,
     });
   } catch (err) {
+    // The credit was consumed up front; refund it since no analysis happened.
+    // Uses the admin client — the refund function is service-role only.
+    if (user && creditConsumed) {
+      try {
+        await createAdminClient().rpc('decrement_analysis_count', { p_user_id: user.id });
+      } catch {
+        // Refund is best-effort; a lost credit is annoying but not unsafe.
+      }
+    }
     if (err instanceof AnalyzeReportError) {
       const status =
         err.code === 'auth' ? 502
@@ -113,29 +175,8 @@ export async function POST(request: Request) {
     return fail('generic', 500);
   }
 
-  // ── Persist result + increment count for logged-in users ──────────────
+  // ── Persist result for logged-in users ─────────────────────────────────
   if (user) {
-    const today = new Date().toISOString().split('T')[0];
-
-    // Fetch current state for monthly reset logic.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const { data: profile2 } = await (supabase as any)
-      .from('profiles')
-      .select('is_premium, analysis_count_monthly, analysis_reset_date')
-      .eq('id', user.id)
-      .single() as { data: Pick<Profile, 'is_premium' | 'analysis_count_monthly' | 'analysis_reset_date'> | null; error: unknown };
-
-    const isPremiumUser = profile2?.is_premium ?? false;
-    const resetDateStr: string = profile2?.analysis_reset_date ?? today;
-    const firstOfMonth = new Date();
-    firstOfMonth.setDate(1);
-    firstOfMonth.setHours(0, 0, 0, 0);
-
-    const needsReset = isPremiumUser && new Date(resetDateStr) < firstOfMonth;
-    const currentCount = needsReset ? 0 : (profile2?.analysis_count_monthly ?? 0);
-    const newCount = currentCount + 1;
-
-    // Insert analysis record.
     const insertRow: AnalysisInsert = {
       user_id: user.id,
       report_name: sanitizeFileName(file.name),
@@ -150,16 +191,7 @@ export async function POST(request: Request) {
       urgency: result.urgency ?? null,
       disclaimer: result.disclaimer ?? null,
     };
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (supabase as any).from('analyses').insert(insertRow);
-
-    // Increment count (with optional monthly reset).
-    const updatePayload: ProfileUpdate = { analysis_count_monthly: newCount };
-    if (needsReset) {
-      updatePayload.analysis_reset_date = today;
-    }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    await (supabase as any).from('profiles').update(updatePayload).eq('id', user.id);
+    await supabase.from('analyses').insert(insertRow);
   }
 
   return NextResponse.json(result);

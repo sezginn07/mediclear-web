@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/Button';
 import { Link } from '@/i18n/navigation';
 import { ShareButton } from './ShareButton';
 import { ShareCard } from './ShareCard';
-import { ReminderPrompt } from './ReminderPrompt';
 
 // Step 1 — the Relief Moment. One large, calm sentence before any values.
 const HERO_STYLES: Record<AnalysisStatus, string> = {
@@ -144,9 +143,6 @@ export function ResultsCard({ result }: { result: AnalysisResult }) {
       <Card className="p-6">
         <ShareCard result={result} />
       </Card>
-
-      {/* Re-engagement: one-month reminder */}
-      <ReminderPrompt />
 
       {/* ── Step 4: Closure — share with doctor + calm reassurance ── */}
       <div className="rounded-2xl border border-border bg-surface p-6 text-center">

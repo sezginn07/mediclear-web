@@ -1,17 +1,21 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { CheckIcon, SparklesIcon } from '@/components/ui/icons';
 
+// Stripe is gated by an explicit flag set in Vercel only once the STRIPE_* vars
+// are live. Until then the Premium CTA shows a disabled "Coming soon" state
+// instead of triggering a checkout that returns { configured: false }.
+const STRIPE_ENABLED = process.env.NEXT_PUBLIC_STRIPE_CONFIGURED === 'true';
+
 export function Pricing() {
   const t = useTranslations('pricing');
   const ts = useTranslations('stripe');
-  const locale = useLocale();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState<{ type: 'info' | 'error'; message: string } | null>(null);
@@ -25,10 +29,7 @@ export function Pricing() {
     try {
       const res = await fetch('/api/stripe/checkout', { method: 'POST' });
       if (!res.ok) {
-        setAlert({
-          type: 'error',
-          message: locale === 'tr' ? 'Ödeme işlemi başlatılamadı. Lütfen tekrar deneyin.' : 'Could not start checkout. Please try again.',
-        });
+        setAlert({ type: 'error', message: ts('checkoutFailed') });
         return;
       }
       const data = (await res.json()) as { url?: string; configured?: boolean; error?: string };
@@ -38,15 +39,9 @@ export function Pricing() {
         return;
       }
       // Stripe keys are missing — show "coming soon" message
-      setAlert({
-        type: 'info',
-        message: locale === 'tr' ? 'Ödeme sistemi yakında aktif olacak.' : 'Payment system coming soon.',
-      });
+      setAlert({ type: 'info', message: ts('comingSoon') });
     } catch {
-      setAlert({
-        type: 'error',
-        message: locale === 'tr' ? 'Bağlantı hatası. İnternet bağlantınızı kontrol edin.' : 'Network error. Check your internet connection.',
-      });
+      setAlert({ type: 'error', message: ts('networkError') });
     } finally {
       setLoading(false);
     }
@@ -134,21 +129,28 @@ export function Pricing() {
                   </li>
                 ))}
               </ul>
-              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="mt-8">
-                <Button className="w-full" onClick={startCheckout} disabled={loading}>
-                  {loading ? (
-                    <span className="flex items-center gap-2">
-                      <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
-                      </svg>
-                      {locale === 'tr' ? 'Hazırlanıyor...' : 'Getting ready...'}
-                    </span>
-                  ) : (
-                    t('premium.cta')
-                  )}
+              {STRIPE_ENABLED ? (
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="mt-8">
+                  <Button className="w-full" onClick={startCheckout} disabled={loading}>
+                    {loading ? (
+                      <span className="flex items-center gap-2">
+                        <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+                        </svg>
+                        {ts('preparing')}
+                      </span>
+                    ) : (
+                      t('premium.cta')
+                    )}
+                  </Button>
+                </motion.div>
+              ) : (
+                /* Stripe not configured yet — disabled CTA, no dead-end checkout. */
+                <Button className="mt-8 w-full" disabled title={t('premium.comingSoon')}>
+                  {t('premium.comingSoon')}
                 </Button>
-              </motion.div>
+              )}
             </Card>
           </motion.div>
         </div>

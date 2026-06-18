@@ -17,18 +17,22 @@ import {
 // Trust chips are positional: encryption / no-storage / compliance.
 const CHIP_ICONS = [LockIcon, EyeOffIcon, ShieldCheckIcon];
 
+// Below this many real analyses we hide the counter rather than show a tiny or
+// zero number. Keeps the social proof honest (no fabricated floor).
+const MIN_SOCIAL_PROOF = 100;
+
 export function Hero() {
   const t = useTranslations('hero');
-  // Real social proof: analyses in the last 7 days from /api/stats.
-  // Starts with a floor value so the counter renders even if the fetch fails.
-  const [weeklyCount, setWeeklyCount] = useState(1247);
+  // Real, all-time analysis count from /api/stats. null = not loaded yet; we
+  // only render the counter once we have a real number above the threshold.
+  const [totalCount, setTotalCount] = useState<number | null>(null);
 
   useEffect(() => {
     let cancelled = false;
     fetch('/api/stats')
       .then((r) => (r.ok ? r.json() : null))
-      .then((d: { weekly?: number } | null) => {
-        if (!cancelled && d?.weekly) setWeeklyCount(d.weekly);
+      .then((d: { total?: number } | null) => {
+        if (!cancelled && typeof d?.total === 'number') setTotalCount(d.total);
       })
       .catch(() => {});
     return () => { cancelled = true; };
@@ -137,10 +141,12 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="mt-10 flex flex-col items-center justify-center gap-2 text-sm text-muted sm:flex-row sm:gap-6"
         >
-          <span className="flex items-center gap-2">
-            <CheckIcon className="h-4 w-4 text-status-normal" />
-            <SocialProofCounter target={weeklyCount} template={t('socialProof', { count: '{n}' })} />
-          </span>
+          {totalCount !== null && totalCount >= MIN_SOCIAL_PROOF && (
+            <span className="flex items-center gap-2">
+              <CheckIcon className="h-4 w-4 text-status-normal" />
+              <SocialProofCounter target={totalCount} template={t('socialProof', { count: '{n}' })} />
+            </span>
+          )}
           <span className="flex items-center gap-2">
             <CheckIcon className="h-4 w-4 text-status-normal" />
             {t('freeNote')}

@@ -26,12 +26,12 @@
     "badge": "Yapay zeka destekli sağlık asistanı",
     "title": "Tıbbi raporunuzu anlayın. Sakin olun.",
     "subtitle": "Elinizdeki rapor korkutucu görünebilir — çoğu zaman değildir. Kan tahlili, MR, patoloji raporunuzu yükleyin; ne anlama geldiğini sade Türkçeyle, sakin bir dille anlatalım.",
-    "trustChips": ["256-bit şifreleme", "Veriler saklanmaz", "KVKK uyumlu"],
+    "trustChips": ["256-bit şifreleme", "Raporunuz saklanmaz", "KVKK uyumlu"],
     "cta": "Ücretsiz Analiz Et",
     "ctaSecondary": "Nasıl çalışır?",
     "disclaimer": "Tıbbi tavsiye değildir. Sonuçlarınızı her zaman bir hekimle değerlendirin.",
     "trustSuffix": "analizler yapıldı",
-    "socialProof": "Bu hafta {count} rapor analiz edildi",
+    "socialProof": "Bugüne kadar {count} analiz yapıldı",
     "freeNote": "Ücretsiz planınızda 2 analiz hakkınız bulunuyor"
   },
   "features": {
@@ -48,7 +48,7 @@
       },
       "private": {
         "title": "Gizli ve Güvenli",
-        "description": "Raporlarınız analiz için işlenir, sunucularımızda saklanmaz. Verileriniz size aittir."
+        "description": "Raporunuz saklanmaz. Analiz sonuçlarınız hesabınızda güvenle tutulur."
       }
     }
   },
@@ -82,7 +82,8 @@
         "2 ücretsiz analiz",
         "Tüm rapor kategorileri",
         "Sade dil açıklamaları",
-        "Doktora soru önerileri"
+        "Doktora soru önerileri",
+        "PDF olarak kaydetme ve paylaşma"
       ],
       "cta": "Ücretsiz Başla"
     },
@@ -91,12 +92,12 @@
       "price": "$4.99",
       "description": "Düzenli takip edenler için",
       "badge": "En Popüler",
+      "comingSoon": "Yakında",
       "features": [
         "Ayda 10 analiz",
         "Tüm rapor kategorileri",
-        "Öncelikli işleme",
-        "PDF olarak kaydetme ve paylaşma",
-        "Sınırsız geçmiş erişimi"
+        "Sade dil açıklamaları",
+        "Son 7 günlük analiz geçmişi"
       ],
       "cta": "Premium'a Geç"
     }
@@ -114,7 +115,7 @@
       },
       {
         "question": "Verilerim güvende mi?",
-        "answer": "Raporlarınız yalnızca analiz için işlenir ve sunucularımızda kalıcı olarak saklanmaz. Analiz tamamlandıktan sonra dosyanız bizde tutulmaz."
+        "answer": "Raporunuz (dosyanız) saklanmaz — yalnızca analiz için işlenir. Hesabınız varsa analiz sonuçlarınız hesabınızda güvenle tutulur; hesabınızı sildiğinizde tüm verileriniz kalıcı olarak silinir."
       },
       {
         "question": "Hangi dosya formatlarını yükleyebilirim?",
@@ -130,7 +131,7 @@
       },
       {
         "question": "Premium ne sunuyor?",
-        "answer": "Premium ile ayda 10 analiz, öncelikli işleme, PDF kaydetme ve paylaşma ile sınırsız geçmiş erişimi elde edersiniz. Aylık $4.99."
+        "answer": "Premium ile ayda 10 analiz ve son 7 günlük analiz geçmişinize erişim elde edersiniz. Aylık $4.99."
       },
       {
         "question": "Aboneliğimi iptal edebilir miyim?",
@@ -163,7 +164,7 @@
     "upload": {
       "title": "Raporu buraya sürükleyin",
       "subtitle": "veya dosya seçmek için tıklayın",
-      "privacyNote": "Raporunuz güvende. Hiçbir veri sunucularımızda saklanmaz.",
+      "privacyNote": "Raporunuz saklanmaz. Analiz sonuçlarınız hesabınızda güvenle tutulur.",
       "formats": "PDF, JPG, PNG, WebP — en fazla 20 MB",
       "selectFile": "Dosya Seç",
       "change": "Dosyayı Değiştir",
@@ -183,7 +184,7 @@
       "title": "Bu analiz nasıl çalışır?",
       "how": "Raporunuz, tıbbi belgeleri sade dile çevirmek üzere yönlendirilmiş yapay zeka tarafından incelenir. Önemli bulgular, doktorunuza sorabileceğiniz sorular ve pratik öneriler çıkarılır.",
       "model": "Claude AI tarafından analiz edilir — Anthropic'in güvenli yapay zeka modeli.",
-      "privacy": "Raporunuz şifreli bağlantıyla (HTTPS) iletilir ve analiz için işlendikten sonra sunucularımızda saklanmaz."
+      "privacy": "Raporunuz şifreli bağlantıyla (HTTPS) iletilir ve dosyanız analiz sonrasında saklanmaz. Hesabınız varsa analiz sonuçlarınız hesabınızda güvenle tutulur."
     },
     "progress": {
       "note": "Raporunuz analiz ediliyor — bu genellikle 15-30 saniye sürer.",
@@ -211,9 +212,9 @@
     },
     "limitGate": {
       "title": "Sağlığınıza yatırım yapın",
-      "description": "Premium ile ayda 10 analiz, analiz geçmişinize erişim ve öncelikli işleme kazanırsınız.",
+      "description": "Premium ile ayda 10 analiz ve son 7 günlük analiz geçmişinize erişim kazanırsınız.",
       "perDay": "Günde 17 kuruştan az — ayda $4.99",
-      "locked": ["Analiz geçmişi", "Ayda 10 analiz", "Öncelikli işleme"],
+      "locked": ["Ayda 10 analiz", "Son 7 günlük analiz geçmişi"],
       "cta": "Premium'u Keşfet"
     }
   },
@@ -245,18 +246,10 @@
       "referralNote": "Arkadaşın MediClear'a kayıt olursa sen de 1 ekstra ücretsiz analiz kazanırsın.",
       "message": "Tıbbi raporumu MediClear ile analiz ettim — karmaşık terimleri sade Türkçeyle anladım. Sen de dene:"
     },
-    "reminder": {
-      "title": "Bu raporu 1 ay sonra tekrar analiz etmek ister misiniz?",
-      "subtitle": "Hatırlatıcı kurun, e-postanıza tek seferlik bir hatırlatma gönderelim.",
-      "emailPlaceholder": "E-posta adresiniz",
-      "cta": "Hatırlatıcı Kur",
-      "done": "Hatırlatıcı kuruldu — bir ay sonra görüşürüz.",
-      "error": "Hatırlatıcı kurulamadı, lütfen tekrar deneyin."
-    },
     "status": {
-      "normal": "🟢 Normal",
-      "warning": "🟡 Dikkat",
-      "urgent": "🔴 Acil"
+      "normal": "Normal",
+      "warning": "Dikkat",
+      "urgent": "Acil"
     },
     "summary": "Özet",
     "urgency": "Aciliyet Durumu",
@@ -307,7 +300,11 @@
   "stripe": {
     "redirecting": "Ödeme sayfasına yönlendiriliyorsunuz...",
     "success": "Premium'a hoş geldiniz! Artık ayda 10 analiz yapabilirsiniz.",
-    "spoofNote": "Not: Bu demo sürümünde Premium durumu tarayıcıda saklanır."
+    "spoofNote": "Not: Bu demo sürümünde Premium durumu tarayıcıda saklanır.",
+    "checkoutFailed": "Ödeme işlemi başlatılamadı. Lütfen tekrar deneyin.",
+    "comingSoon": "Ödeme sistemi yakında aktif olacak.",
+    "networkError": "Bağlantı hatası. İnternet bağlantınızı kontrol edin.",
+    "preparing": "Hazırlanıyor..."
   },
   "auth": {
     "login": {
@@ -326,7 +323,8 @@
       "orContinueWith": "veya şununla devam edin",
       "continueWithGoogle": "Google ile Devam Et",
       "emailNotConfirmed": "E-posta adresinizi doğrulamanız gerekiyor. Lütfen e-postanızı kontrol edin.",
-      "invalidCredentials": "E-posta veya şifre hatalı."
+      "invalidCredentials": "E-posta veya şifre hatalı.",
+      "lockout": "Çok fazla hatalı giriş denemesi. {seconds} saniye bekleyin."
     },
     "register": {
       "title": "Hesap Oluştur",
@@ -399,7 +397,8 @@
       "submit": "Değişikliği Gönder",
       "submitting": "Gönderiliyor...",
       "success": "Yeni e-posta adresinize doğrulama linki gönderildi. Onayladıktan sonra değişiklik geçerli olur.",
-      "sameEmail": "Bu zaten mevcut email adresiniz."
+      "sameEmail": "Bu zaten mevcut email adresiniz.",
+      "invalid": "Geçerli bir e-posta adresi girin."
     },
     "profile": {
       "title": "Profil",
@@ -437,7 +436,8 @@
       "deleteConfirmPrompt": "Onaylamak için DELETE yazın",
       "deleteConfirmPlaceholder": "DELETE",
       "confirmButton": "Hesabı Kalıcı Olarak Sil",
-      "cancel": "İptal"
+      "cancel": "İptal",
+      "deleteFailed": "Hesap silinemedi. Lütfen tekrar deneyin."
     }
   }
 }
