@@ -12,7 +12,6 @@ export interface Database {
           created_at: string;
           is_premium: boolean;
           premium_expires_at: string | null;
-          stripe_customer_id: string | null;
           analysis_count_monthly: number;
           analysis_reset_date: string;
           email_confirmed: boolean;
@@ -27,7 +26,6 @@ export interface Database {
           created_at?: string;
           is_premium?: boolean;
           premium_expires_at?: string | null;
-          stripe_customer_id?: string | null;
           analysis_count_monthly?: number;
           analysis_reset_date?: string;
           email_confirmed?: boolean;
@@ -42,7 +40,6 @@ export interface Database {
           created_at?: string;
           is_premium?: boolean;
           premium_expires_at?: string | null;
-          stripe_customer_id?: string | null;
           analysis_count_monthly?: number;
           analysis_reset_date?: string;
           email_confirmed?: boolean;

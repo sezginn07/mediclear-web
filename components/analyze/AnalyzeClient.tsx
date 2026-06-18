@@ -30,7 +30,7 @@ export function AnalyzeClient({ upgraded }: { upgraded: boolean }) {
   const [submitting, setSubmitting] = useState(false);
   const [usage, setUsage] = useState<UsageSnapshot | null>(null);
 
-  // Honor the Stripe success redirect (?upgraded=true) and load usage.
+  // Honor the checkout success redirect (?upgraded=true) and load usage.
   useEffect(() => {
     if (upgraded) setPremium(true);
     setUsage(getUsage());

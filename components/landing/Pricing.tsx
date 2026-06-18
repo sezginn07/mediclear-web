@@ -8,14 +8,15 @@ import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { CheckIcon, SparklesIcon } from '@/components/ui/icons';
 
-// Stripe is gated by an explicit flag set in Vercel only once the STRIPE_* vars
-// are live. Until then the Premium CTA shows a disabled "Coming soon" state
-// instead of triggering a checkout that returns { configured: false }.
-const STRIPE_ENABLED = process.env.NEXT_PUBLIC_STRIPE_CONFIGURED === 'true';
+// Checkout is gated by an explicit flag set in Vercel only once the Lemon
+// Squeezy env vars are live. Until then the Premium CTA shows a disabled
+// "Coming soon" state instead of triggering a checkout that returns
+// { configured: false }.
+const LEMONSQUEEZY_ENABLED = process.env.NEXT_PUBLIC_LEMONSQUEEZY_CONFIGURED === 'true';
 
 export function Pricing() {
   const t = useTranslations('pricing');
-  const ts = useTranslations('stripe');
+  const ts = useTranslations('payment');
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState<{ type: 'info' | 'error'; message: string } | null>(null);
@@ -27,7 +28,7 @@ export function Pricing() {
     setLoading(true);
     setAlert(null);
     try {
-      const res = await fetch('/api/stripe/checkout', { method: 'POST' });
+      const res = await fetch('/api/lemonsqueezy/checkout', { method: 'POST' });
       if (!res.ok) {
         setAlert({ type: 'error', message: ts('checkoutFailed') });
         return;
@@ -38,7 +39,7 @@ export function Pricing() {
         window.location.href = data.url;
         return;
       }
-      // Stripe keys are missing — show "coming soon" message
+      // Lemon Squeezy keys are missing — show "coming soon" message
       setAlert({ type: 'info', message: ts('comingSoon') });
     } catch {
       setAlert({ type: 'error', message: ts('networkError') });
@@ -129,7 +130,7 @@ export function Pricing() {
                   </li>
                 ))}
               </ul>
-              {STRIPE_ENABLED ? (
+              {LEMONSQUEEZY_ENABLED ? (
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }} className="mt-8">
                   <Button className="w-full" onClick={startCheckout} disabled={loading}>
                     {loading ? (
@@ -146,7 +147,7 @@ export function Pricing() {
                   </Button>
                 </motion.div>
               ) : (
-                /* Stripe not configured yet — disabled CTA, no dead-end checkout. */
+                /* Checkout not configured yet — disabled CTA, no dead-end. */
                 <Button className="mt-8 w-full" disabled title={t('premium.comingSoon')}>
                   {t('premium.comingSoon')}
                 </Button>

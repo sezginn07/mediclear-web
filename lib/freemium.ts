@@ -3,10 +3,9 @@
 // getFreemiumStatus(userId) reads from the database for logged-in users.
 // All other functions are client-side localStorage (guest mode).
 //
-// Free users get 2 lifetime analyses. Premium users (Stripe subscription) get
-// 10 per calendar month, with a monthly reset. All client-side via localStorage;
-// the mobile app used the same approach (FREE is a lifetime counter, premium
-// resets monthly). This is intentionally spoofable — see lib/stripe.ts.
+// Free users get 2 lifetime analyses. Premium users (Lemon Squeezy subscription)
+// get 10 per calendar month, with a monthly reset. These client-side helpers are
+// an optimistic UI hint only — the analyze route enforces limits against the DB.
 
 const COUNT_KEY = 'mediclear_web_analysis_count';
 const PREMIUM_KEY = 'mediclear_web_premium';
@@ -30,9 +29,9 @@ export function isPremium(): boolean {
   return window.localStorage.getItem(PREMIUM_KEY) === 'true';
 }
 
-// Premium status is set after a successful Stripe checkout (success redirect
-// carries ?upgraded=true). Spoofable by design — real entitlement enforcement
-// would live server-side.
+// Optimistic UI hint set after a successful checkout (success redirect carries
+// ?upgraded=true). Real entitlement lives server-side: the webhook sets
+// profiles.is_premium and the analyze route trusts the DB, not this flag.
 export function setPremium(value: boolean): void {
   if (!isBrowser()) return;
   if (value) {

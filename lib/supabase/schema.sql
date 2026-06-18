@@ -13,7 +13,6 @@ CREATE TABLE IF NOT EXISTS public.profiles (
   created_at             TIMESTAMPTZ DEFAULT NOW(),
   is_premium             BOOLEAN     DEFAULT FALSE,
   premium_expires_at     TIMESTAMPTZ,
-  stripe_customer_id     TEXT,
   analysis_count_monthly INTEGER     DEFAULT 0,
   analysis_reset_date    DATE        DEFAULT CURRENT_DATE,
   email_confirmed        BOOLEAN     DEFAULT FALSE,
@@ -205,10 +204,6 @@ CREATE POLICY "Users can delete own analyses"
 
 CREATE INDEX IF NOT EXISTS analyses_user_id_created_at_idx
   ON public.analyses (user_id, created_at DESC);
-
-CREATE INDEX IF NOT EXISTS profiles_stripe_customer_id_idx
-  ON public.profiles (stripe_customer_id)
-  WHERE stripe_customer_id IS NOT NULL;
 
 /*
 FUTURE: Add pg_cron cleanup job in Supabase Dashboard > Database > Extensions > pg_cron:
