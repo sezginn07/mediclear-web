@@ -50,6 +50,11 @@ export default async function TermsPage({
           </section>
 
           <section>
+            <h2 className="text-lg font-semibold">{t('sections.data.title')}</h2>
+            <p className="mt-2 text-muted">{t('sections.data.body')}</p>
+          </section>
+
+          <section>
             <h2 className="text-lg font-semibold">{t('sections.liability.title')}</h2>
             <p className="mt-2 text-muted">{t('sections.liability.body')}</p>
           </section>

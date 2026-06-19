@@ -285,7 +285,11 @@
       },
       "subscription": {
         "title": "Abonelik Koşulları",
-        "body": "Premium abonelikler aylık olarak faturalandırılır. Aboneliğinizi istediğiniz zaman iptal edebilirsiniz; iptal sonrasında mevcut dönem sonuna kadar Premium özelliklerinden yararlanmaya devam edersiniz. İadeler, geçerli mevzuat çerçevesinde değerlendirilir."
+        "body": "Premium abonelikler aylık olarak faturalandırılır ve ödemeler ödeme hizmet sağlayıcımız Lemon Squeezy üzerinden işlenir. Aboneliğinizi istediğiniz zaman iptal edebilirsiniz; iptal sonrasında mevcut dönem sonuna kadar Premium özelliklerinden yararlanmaya devam edersiniz. İadeler, geçerli mevzuat çerçevesinde değerlendirilir."
+      },
+      "data": {
+        "title": "Veri Saklama",
+        "body": "Giriş yapmış kullanıcıların analiz sonuçları hesap geçmişinde saklanır. Misafir kullanıcıların raporları işlem sonrası silinir."
       },
       "liability": {
         "title": "Sorumluluk Sınırlaması",

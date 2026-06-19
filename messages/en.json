@@ -285,7 +285,11 @@
       },
       "subscription": {
         "title": "Subscription Terms",
-        "body": "Premium subscriptions are billed monthly. You may cancel your subscription at any time; after cancellation, you retain access to Premium features until the end of the current billing period. Refunds are handled in accordance with applicable law."
+        "body": "Premium subscriptions are billed monthly, and payments are processed by our payment provider, Lemon Squeezy. You may cancel your subscription at any time; after cancellation, you retain access to Premium features until the end of the current billing period. Refunds are handled in accordance with applicable law."
+      },
+      "data": {
+        "title": "Data Retention",
+        "body": "Logged-in users' analysis results are stored in their account history. Guest users' reports are deleted after processing."
       },
       "liability": {
         "title": "Limitation of Liability",
