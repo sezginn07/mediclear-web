@@ -73,7 +73,7 @@
     "title": "Size uygun planı seçin",
     "subtitle": "Önce ücretsiz deneyin. İstediğiniz zaman yükseltin.",
     "perMonth": "/ ay",
-    "anchor": "Tek bir doktor randevusundan daha ucuz — ayda sadece $5.49",
+    "anchor": "Tek bir doktor randevusundan daha ucuz — ayda sadece ₺255",
     "free": {
       "name": "Ücretsiz",
       "price": "₺0",
@@ -89,7 +89,7 @@
     },
     "premium": {
       "name": "Premium",
-      "price": "$5.49",
+      "price": "₺255",
       "description": "Düzenli takip edenler için",
       "badge": "En Popüler",
       "comingSoon": "Yakında",
@@ -131,7 +131,7 @@
       },
       {
         "question": "Premium ne sunuyor?",
-        "answer": "Premium ile ayda 10 analiz ve son 7 günlük analiz geçmişinize erişim elde edersiniz. Aylık $5.49."
+        "answer": "Premium ile ayda 10 analiz ve son 7 günlük analiz geçmişinize erişim elde edersiniz. Aylık ₺255."
       },
       {
         "question": "Aboneliğimi iptal edebilir miyim?",
@@ -213,7 +213,7 @@
     "limitGate": {
       "title": "Sağlığınıza yatırım yapın",
       "description": "Premium ile ayda 10 analiz ve son 7 günlük analiz geçmişinize erişim kazanırsınız.",
-      "perDay": "Günde 18 kuruştan az — ayda $5.49",
+      "perDay": "Günde ₺9'dan az — ayda ₺255",
       "locked": ["Ayda 10 analiz", "Son 7 günlük analiz geçmişi"],
       "cta": "Premium'u Keşfet"
     }

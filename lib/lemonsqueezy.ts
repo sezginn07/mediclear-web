@@ -8,7 +8,7 @@
 import { lemonSqueezySetup, createCheckout } from '@lemonsqueezy/lemonsqueezy.js';
 import { getBaseUrl } from './baseUrl';
 
-export const PREMIUM_PRICE_USD = 5.49;
+export const PREMIUM_PRICE_TRY = 255;
 
 let initialized = false;
 

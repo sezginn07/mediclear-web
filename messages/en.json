@@ -73,7 +73,7 @@
     "title": "Choose the plan that fits you",
     "subtitle": "Try it free first. Upgrade anytime.",
     "perMonth": "/ month",
-    "anchor": "Less than a single doctor's visit — just $5.49 a month",
+    "anchor": "Less than a single doctor's visit — just ₺255 a month",
     "free": {
       "name": "Free",
       "price": "$0",
@@ -89,7 +89,7 @@
     },
     "premium": {
       "name": "Premium",
-      "price": "$5.49",
+      "price": "₺255",
       "description": "For regular follow-ups",
       "badge": "Most Popular",
       "comingSoon": "Coming soon",
@@ -131,7 +131,7 @@
       },
       {
         "question": "What does Premium offer?",
-        "answer": "Premium gives you 10 analyses per month and access to your last 7 days of analysis history. $5.49 per month."
+        "answer": "Premium gives you 10 analyses per month and access to your last 7 days of analysis history. ₺255 per month."
       },
       {
         "question": "Can I cancel my subscription?",
@@ -213,7 +213,7 @@
     "limitGate": {
       "title": "Invest in your health",
       "description": "Premium gives you 10 analyses a month and access to your last 7 days of analysis history.",
-      "perDay": "Less than 18 cents a day — $5.49/month",
+      "perDay": "Less than ₺9 a day — ₺255/month",
       "locked": ["10 analyses per month", "Last 7 days of history"],
       "cta": "Explore Premium"
     }
